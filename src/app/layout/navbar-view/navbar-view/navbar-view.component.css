@@ -1,0 +1,138 @@
+.fondo{
+    
+    /*
+    background: rgb(30,144,255);
+    background: linear-gradient(50deg, rgba(30,144,255,1) 0%, rgba(255,255,255,1) 80%);
+    */
+}
+
+.navbar-pc {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 130px;
+  background: rgb(215, 241, 255);
+  transition: background 0.2s ease-in-out;
+  z-index: 1000;
+}
+
+.navbar-pc a {
+  color: rgb(0, 0, 0);
+}
+
+.is-home{
+  background: transparent !important;
+}
+
+.is-home a {
+  color: white;
+}
+
+.navbar-mobile {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 130px;
+  width: 100%;
+  background: rgb(215, 241, 255);
+  transition: background 0.2s ease-in-out;
+}
+
+.scrolled {
+  background: white !important; /* Al hacer scroll se vuelve sólido */
+}
+
+.scrolled a {
+  color: rgb(0, 0, 0);
+}
+
+.fondo-componentes{
+  /*background: rgb(215, 241, 255);*/
+  background: linear-gradient(180deg, #e0f7ff 0%, #ffffff 100%);
+  
+}
+
+.pointer{
+    cursor: pointer;
+}
+
+
+.header-li{
+    font-size: 15px;
+}
+
+.header-li-mobile{
+  font-size: 30px;
+}
+
+.header-body{
+  /*  height: 20vh;*/
+}
+
+.header-mobile-navbar-shop-button{
+  height: 4vh;
+  width: 6vh;
+}
+
+.offcanvas-mobile{
+  width: 100%;
+  max-width: 300px; /* Ajusta el ancho del menú */
+  background: rgb(248, 248, 248);
+  /*background: rgb(30,144,255);
+  background: linear-gradient(307deg, rgba(30,144,255,1) 0%, rgba(140,196,255,1) 100%);
+  */
+  box-shadow: 1px 1px 10px black;
+  color: rgb(255, 255, 255);
+}
+
+.offcanvas-body{
+  height: 250px;
+  min-height: 230px;
+  max-height: 270px;
+  overflow: hidden;
+}
+
+.whatsapp-icon{
+  height: 70px; 
+  width:70px; 
+  background:#25d366; 
+  color:white; 
+  box-shadow: 3px 3px 3px black;
+  min-width: 50px;
+  min-height: 50px;
+  max-width: 80px;
+  max-height: 80px;
+}
+
+
+/*ANIMACIONES*/
+.hvr-underline-from-center {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+    position: relative;
+    overflow: hidden;
+  }
+  .hvr-underline-from-center:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    left: 51%;
+    right: 51%;
+    bottom: 0;
+    background: #2098D1;
+    height: 4px;
+    -webkit-transition-property: left, right;
+    transition-property: left, right;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out;
+  }
+  .hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
+    left: 0;
+    right: 0;
+  }

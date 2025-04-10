@@ -49,7 +49,7 @@
 
 .fondo-componentes{
   /*background: rgb(215, 241, 255);*/
-  background: linear-gradient(180deg, #e0f7ff 0%, #ffffff 100%);
+  background-color: #fcfcfc !important;
   
 }
 

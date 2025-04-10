@@ -6,6 +6,24 @@ h1 {
     font-size: 25px;
 }
 
+li {
+    padding-bottom: 5px;
+}
+
+.nav-link {
+    border: none;
+    color: grey;
+}
+
+.nav-link.active {
+    border-bottom: 2px solid #000;
+  }
+
+.nav-link:not(.active):hover {
+    border: 0px;
+    color: black;
+}
+
 .img-service {
     height: 30vh;
 }

@@ -10,6 +10,18 @@ li {
     padding-bottom: 5px;
 }
 
+.alert {
+    position:static;
+}
+
+.alert-link.disabled {
+    text-decoration: none;
+}
+
+.tab-content p {
+    font-weight: 500;
+}
+
 .nav-link {
     border: none;
     color: grey;

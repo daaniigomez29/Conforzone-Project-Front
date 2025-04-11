@@ -47,6 +47,14 @@ a {
   color: rgb(31, 132, 255) !important;
 }
 
+.link-with-underline {
+  text-decoration: underline;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
 h1, h2{
   color: #11305a;
 }

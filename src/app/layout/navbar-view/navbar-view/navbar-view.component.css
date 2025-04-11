@@ -105,6 +105,10 @@
   max-height: 80px;
 }
 
+.whatsapp-icon.disabled {
+  background-color: grey;
+}
+
 
 /*ANIMACIONES*/
 .hvr-underline-from-center {

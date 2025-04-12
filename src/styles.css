@@ -52,7 +52,13 @@ a {
 }
 
 .disabled {
+  cursor: not-allowed;
+  &:hover {
+    opacity: 100%;
+  }
+  &:active {
   pointer-events: none;
+  }
 }
 
 h1, h2{

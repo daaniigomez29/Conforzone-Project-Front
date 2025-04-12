@@ -1,6 +1,6 @@
 <!-- Navbar PC-->
 <nav class="navbar navbar-pc d-none d-lg-block">
-    <div class="container d-flex justify-content-between">
+    <div class="container-xl d-flex justify-content-between">
         <div class="d-flex align-items-center gap-4">
             <div class="">
                 <img src="../../../assets/logo_conforzone.png" alt="Logo" routerLink="/inicio"
@@ -47,7 +47,7 @@
                 </ul>
             </div>
             } @else {
-            <div>
+            <div class="">
                 <button class="btn" id="btnLogin" [ngClass]="router.url.includes('/inicio') ? 'btn-outline-light' : 'btn-outline-dark' "><i class="fa-solid fa-user"></i> Iniciar
                     sesión</button>
             </div>
@@ -92,7 +92,8 @@
             target="_blank"
             class="rounded-circle position-fixed bottom-0 end-0 m-4 whatsapp-icon d-flex justify-content-center align-items-center"
             data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="hover"
-            data-bs-content="Contacta con nosotros!">
+            [attr.data-bs-content]="availableContactFlag ? 'Contacta con nosotros!' : 'Estamos cerrados, contacte con nosotros en las horas disponibles'"
+            >
             <i class="fa-brands fa-whatsapp fa-2xl"></i>
         </a>
 
@@ -155,8 +156,8 @@
                 <ul class="d-flex flex-column p-0 gap-3 text-dark">
                     <li><i class="fa-solid fa-location-dot"></i> Nuestra empresa</li>
                     <li><i class="fa-solid fa-envelope"></i> <a class="link-with-color" href="https://mail.google.com/mail/?view=cm&fs=1&to=conforzoneeficiencias@gmail.com&su=Hola%20desde%20mi%20web&body=Has%20contactado%20con%20Conforzone%20Eficiencias%20y%20estamos%20para%20atenderte%20en%20lo%20que%20necesites.%20Muchas%20gracias" target="_blank"> Contáctanos</a></li>
-                    <li><i class="fa-solid fa-shop"></i> Tlf. <strong>(+34) 674 86 78 24</strong> De L-V de
-                        8:00h-20:00h y Sábado de 9:00h-14:00h</li>
+                    <li><i class="fa-solid fa-shop"></i> Tlf. <strong>(+34) 674 86 78 24</strong></li>
+                    <li><i class="fa-solid fa-clock"></i> De L-V de <strong>8:00h-20:00h</strong> y &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sábado de <strong>9:00h-14:00h</strong></li>
                 </ul>
             </div>
         </div>

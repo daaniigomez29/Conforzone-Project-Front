@@ -16,7 +16,7 @@ export class NavbarViewComponent {
 
   @ViewChild('triggerSection') triggerSection!: ElementRef;
 
-  daysOfWeek = ['1', '2', '3', '4', '5', '6', '7']
+  availableContactFlag:boolean = true
 
   constructor(public authService: AuthUserService, public router: Router) { }
 
@@ -34,7 +34,7 @@ export class NavbarViewComponent {
 
       }
     });
-    availableContact("whatsapp-icon", "disabled")
+    this.availableContactFlag = availableContact("whatsapp-icon", "disabled")
   }
 
   isScrolled = false;

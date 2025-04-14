@@ -10,9 +10,12 @@ import { OffersPageComponent } from './components/offers/offers-page/offers-page
 import { ContactPageComponent } from './components/contact/contact-page/contact-page.component';
 import { SpecificServiceComponent } from './components/specific_services/specific-service/specific-service.component';
 import { SpecificServiceDetailComponent } from './components/specific_services/specific-service-detail/specific-service-detail.component';
+import { LoginComponent } from './components/users/login/login.component';
+import { PageNotFoundComponent } from './components/page_not_found/page-not-found/page-not-found.component';
 
 export const routes: Routes = [
     {path: '', redirectTo:'inicio', pathMatch:'full'},
+    {path: 'login-secret655', component:LoginComponent},
     {path: '', component:NavbarViewComponent,
         children:[
             {path: 'inicio', component:HomeComponent},
@@ -22,20 +25,8 @@ export const routes: Routes = [
             {path: 'ofertas', component:OffersPageComponent},
             {path: 'contacto', component:ContactPageComponent},
             {path: 'servicios/:slug', component: SpecificServiceComponent},
-            {path: 'servicios/:slug/:id', component: SpecificServiceDetailComponent}
+            {path: 'servicios/:slug/:id', component: SpecificServiceDetailComponent},
+            {path: '**', redirectTo:'/inicio'}
         ]
-        
-        
-        /*,
-        children: [
-            {path: 'user/:id', canMatch:[authGuard]},
-            {path: 'user/:id/edit', canMatch:[authGuard]},
-            {path: 'servicio-especifico/:slug'},
-            {path: 'ofertas'},
-            {path: 'compras/:id', canMatch:[authGuard]}
-        ]
-        */
     },
-    //{path: 'register'},
-    //{path: 'login'},
 ];

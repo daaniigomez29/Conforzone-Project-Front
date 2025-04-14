@@ -76,3 +76,41 @@ p {
 .pointer {
   cursor: pointer;
 }
+
+@media (min-width:1250px) {
+  .fade-in-left {
+    opacity: 0;
+    animation-name: fade-in-left;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes fade-in-left {
+    from {
+     transform: translateX(-100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  }
+  
+  .fade-in-right {
+    opacity: 0;
+    animation-name: fade-in-right;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+  }
+  
+  @keyframes fade-in-right {
+    from {
+     transform: translateX(100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0px);
+      opacity: 1;
+    }
+  } 
+}

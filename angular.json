@@ -31,7 +31,7 @@
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
-              "src/app/js/activate_events.js"
+              "src/app/js/activate_events.js"            
             ]
           },
           "configurations": {

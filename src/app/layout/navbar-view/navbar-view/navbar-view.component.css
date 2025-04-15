@@ -18,6 +18,33 @@
 
 .navbar-pc a {
   color: rgb(0, 0, 0);
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+  transition: 0.1s ease-in-out;
+}
+
+.offcanvas {
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+.offcanvas a {
+  color: rgb(0, 0, 0);
+}
+
+.navbar-item a.active {
+  color: #2098D1;
+  font-weight: 600;
+}
+
+.logo {
+  transition: transform 0.2s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
 }
 
 .is-home{
@@ -39,6 +66,8 @@
 
 .scrolled {
   background: white !important; /* Al hacer scroll se vuelve sólido */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+
 }
 
 .scrolled a {

@@ -41,10 +41,14 @@ export class AboutUsPageComponent implements AfterViewInit{
     };
 
     const observerLeft = new IntersectionObserver(loadTextLeft, {
+      root: null, 
+      rootMargin: '0px',
       threshold: 0.5
     });
 
     const observerRight = new IntersectionObserver(loadTextRight, {
+      root: null, 
+      rootMargin: '0px',
       threshold: 0.5,
     });
 

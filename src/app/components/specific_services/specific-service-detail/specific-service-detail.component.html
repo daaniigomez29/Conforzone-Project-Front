@@ -1,39 +1,39 @@
 <div class="specific-service-detail">
   <div class="container p-5">
-    <div class="row border bg-white text-center text-md-start">
-      <div class="col-md-4 d-flex justify-content-center">
+    <div class="row border rounded bg-white text-center text-md-start py-2">
+      <div class="col-md-4 d-flex justify-content-center align-items-center">
         <img class="img-service" src="../../../../assets/instalacion-split-pared.jpg" alt="">
       </div>
       <div class="col-md-8 d-flex flex-column justify-content-start py-3">
-        <h1 class="fw-bold pb-2">Instalación Básica Split Pared hasta 3.500 frigorías</h1>
+        <h1 class="fw-bold fs-3 pb-2">Instalación Básica Split Pared hasta 3.500 frigorías</h1>
         <!--
         <div class="alert alert-warning py-2 fw-bold">
           <i class="fa-solid fa-circle-check"></i> NOSOTROS TE LLAMAMOS PARA PROGRAMAR LA CITA PARA LA INSTALACIÓN
         </div>
         -->
-        <p>Precios de instalación para equipos {{installationLabel}} suministrados por <strong>Conforzone
-            Eficiencias</strong>.</p>
-        <p>Garantía de 3 años en nuestra instalación realizada.</p>
+        <p class="mb-2 fw-medium">Precios de instalación para equipos <strong>{{ installationLabel }}</strong> suministrados por <strong>Conforzone Eficiencias</strong>.</p>
+        <p class="mb-4 fw-medium">Garantía de <strong>3 años</strong> en nuestra instalación realizada.</p>
 
-        <div class="border mb-3 rounded">
-          <div class="d-flex justify-content-around align-items-center">
-            <div class="d-md-flex gap-md-5 gap-3">
-              <h5 class="fw-bold mt-3">Cantidad: </h5>
-              <div class="d-flex gap-3 justify-content-center align-items-center">
-                <button (click)="decrement()" class="btn btn-primary"> - </button>
-                <p class="mt-3">{{quantity}}</p>
-                <button (click)="increment()" class="btn btn-primary"> + </button>
+        <div class="border mb-3 rounded p-3 bg-light">
+          <div class="row align-items-center text-center text-md-start">
+            <div class="col-md-6 mb-3 mb-md-0">
+              <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start align-items-center gap-3">
+                <h5 class="fw-bold mb-0">Cantidad:</h5>
+                <div class="d-flex gap-3 align-items-center">
+                  <button (click)="decrement()" class="btn btn-outline-primary px-3">-</button>
+                  <span class="fs-5">{{ quantity }}</span>
+                  <button (click)="increment()" class="btn btn-outline-primary px-3">+</button>
+                </div>
               </div>
             </div>
-            <div class="d-flex align-items-center gap-3">
-              <h5 class="fw-bold mt-1">{{ totalPrice | number:'1.2-2' }}€</h5>
-              <p class="pt-2 text-muted mt-1 mb-0 fst-italic fw-light" style="font-size: 14px;">21% IVA incluido</p>
+            <div class="col-md-6 text-center text-md-end">
+              <h4 class="fw-bold mb-1">{{ totalPrice | number:'1.2-2' }}€</h4>
+              <small class="text-muted fst-italic">21% IVA incluido</small>
             </div>
           </div>
         </div>
-        <div class="alert alert-info py-2 fw-bold">
-          <i class="fa-solid fa-circle-exclamation"></i> Todos los precios en la página son una aproximación del precio
-          final, para confirmación de este consultar precio via <a class="alert-link link-with-underline" href="https://mail.google.com/mail/?view=cm&fs=1&to=conforzoneeficiencias@gmail.com&su=Hola%20desde%20mi%20web&body=Has%20contactado%20con%20Conforzone%20Eficiencias%20y%20estamos%20para%20atenderte%20en%20lo%20que%20necesites.%20Muchas%20gracias" target="_blank">Email</a> o <a class="alert-link link-with-underline"
+        <div class="alert alert-info py-2 fw-medium">
+          <i class="fa-solid fa-circle-exclamation"></i> Todos los precios en la página son una <strong>aproximación del precio final</strong>, para confirmación de este consultar precio vía <a class="alert-link link-with-underline" href="https://mail.google.com/mail/?view=cm&fs=1&to=conforzoneeficiencias@gmail.com&su=Hola%20desde%20mi%20web&body=Has%20contactado%20con%20Conforzone%20Eficiencias%20y%20estamos%20para%20atenderte%20en%20lo%20que%20necesites.%20Muchas%20gracias" target="_blank">Email</a> o <a class="alert-link link-with-underline"
             href="https://web.whatsapp.com/send?l=es&phone=34674778285&text=Has contactado con Conforzone Eficiencias y estamos para atenderte en lo que necesites. Muchas gracias"
             target="_blank">Whatsapp</a>.
         </div>
@@ -72,7 +72,25 @@
         <div class="tab-pane fade" id="additionalMeters" role="tabpanel" aria-labelledby="additionalMeters-tab">
           <p class="mb-3 mt-3">Si los 3 metros de recorrido incluidos en la instalación <strong>no son suficientes</strong> puede añadir un
            <strong>metro adicional por 33,00€</strong>. En caso de que no tenga claro los metros adicionales que va a necesitar, no se preocupe, nuestros técnicos lo medirán y se lo añadirán a la factura final.</p>
-        </div>
+           <div class="border mb-3 rounded p-3 bg-light">
+            <div class="row align-items-center text-center text-md-start">
+              <div class="col-md-6 mb-3 mb-md-0">
+                <div class="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start align-items-center gap-3">
+                  <h5 class="fw-bold mb-0">Cantidad:</h5>
+                  <div class="d-flex gap-3 align-items-center">
+                    <button (click)="decrement()" class="btn btn-outline-primary px-3">-</button>
+                    <span class="fs-5">{{ quantity }}</span>
+                    <button (click)="increment()" class="btn btn-outline-primary px-3">+</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 text-center text-md-end">
+                <h4 class="fw-bold mb-1">{{ totalPrice | number:'1.2-2' }}€</h4>
+                <small class="text-muted fst-italic">21% IVA incluido</small>
+              </div>
+            </div>
+          </div>
+          </div>
         <div class="tab-pane fade" id="guarantee" role="tabpanel" aria-labelledby="guarantee-tab">
           <h2 class="mb-3 mt-3 fw-bold" style="color: rgb(70, 70, 70); font-size:20px;">La Garantía mínima en todos
             nuestros productos ofrecida por el fabricante es de 3 años</h2>

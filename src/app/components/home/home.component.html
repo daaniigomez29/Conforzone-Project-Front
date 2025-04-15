@@ -9,9 +9,55 @@
             <p class="mt-3 fs-5">Expertos en <strong>instalación y mantenimiento</strong> de aire acondicionado.
                 Servicio rápido y garantizado.</p>
             <div class="mt-4 d-flex justify-content-center gap-3">
-                <a class="btn btn-primary btn-responsive" routerLink="/contacto">Solicitar Presupuesto</a>
+                <button class="btn btn-primary btn-responsive" data-bs-toggle="modal" data-bs-target="#wizardModal">Solicitar presupuesto</button>
                 <a class="btn btn-outline-light btn-responsive" routerLink="/servicios">Ver Servicios</a>
             </div>
+
+            <div class="modal fade text-dark" id="wizardModal" tabindex="-1" aria-labelledby="wizardModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                  <div class="modal-content">
+              
+                    <div class="modal-header">
+                      <h5 class="modal-title fw-bold text-dark" id="wizardModalLabel">Solicitar presupuesto</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+            
+                    <div class="modal-body">
+                      <!-- Paso 1 -->
+                      <div *ngIf="step === 1">
+                        <div class="text-start pb-3">
+                            <label class="text-dark">Tipo de instalación</label>
+                        </div>
+                        <select class="form-select mb-3" [(ngModel)]="installationType">
+                          <option value="">Selecciona</option>
+                          <option>Split pared</option>
+                          <option>Multisplit</option>
+                        </select>
+                        <div class="d-flex gap-3">
+                            <button class="btn btn-secondary w-100" (click)="step = 2">Atrás</button>
+                            <button class="btn btn-secondary w-100" (click)="step = 2">Siguiente</button>
+                        </div>
+                      </div>
+              
+                      <!-- Paso 2 -->
+                      <div *ngIf="step === 2">
+                        <label>Unidades interiores</label>
+                        <input type="number" class="form-control mb-3" [(ngModel)]="unidadesInterior" />
+                        <button class="btn btn-secondary w-100" (click)="step = 3">Siguiente</button>
+                      </div>
+              
+                      <!-- Paso 3 -->
+                      <div *ngIf="step === 3">
+                        <h6>Resumen:</h6>
+                        <p><strong>Tipo:</strong> {{ installationType }}</p>
+                        <p><strong>Unidades:</strong> {{ unidadesInterior }}</p>
+                        <button class="btn btn-success w-100" (click)="enviarPresupuesto()" >Enviar</button>
+                      </div>
+                    </div>
+              
+                  </div>
+                </div>
+              </div>
         </div>
     </section>
 </div>

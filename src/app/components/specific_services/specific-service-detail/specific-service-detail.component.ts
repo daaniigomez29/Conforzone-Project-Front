@@ -29,7 +29,11 @@ export class SpecificServiceDetailComponent {
 
   quantity:number = 1
 
-  servicePrice:number = 33.00
+  servicePrice:number = 150.00
+
+  additionalMeterPrice:number = 33.00
+
+  quantityAdditionalMeter:number = 1
 
   totalPrice:number = this.servicePrice
 
@@ -58,7 +62,7 @@ ngOnInit(){
     }
   })
 
-  availableContact("link-with-underline", "disabled")
+  availableContact("link-with-underline-whatsapp", "disabled")
 }
 
 findSlug(){
@@ -72,10 +76,22 @@ findSlug(){
     this.totalPrice = this.totalPrice + this.servicePrice
   }
 
+  incrementAdditionalMeter() {
+    this.quantityAdditionalMeter++;
+    this.totalPrice = this.totalPrice + this.additionalMeterPrice
+  }
+
   decrement() {
     if(this.quantity > 1) {
       this.quantity--;
       this.totalPrice = this.totalPrice - this.servicePrice
+    }
+  }
+
+  decrementAdditionalMeter() {
+    if(this.quantityAdditionalMeter > 1) {
+      this.quantityAdditionalMeter--;
+      this.totalPrice = this.totalPrice - this.additionalMeterPrice
     }
   }
 

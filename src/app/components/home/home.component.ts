@@ -24,4 +24,15 @@ export class HomeComponent {
   }
 
   constructor(private router:Router){}
+
+  ngAfterViewOnInit(){
+    const modal = document.getElementById('wizardModal');
+
+    if(modal){
+      (modal as HTMLElement).addEventListener('hidden.bs.modal', () => {
+        const active = document.activeElement as HTMLElement;
+        active?.blur();
+      });
+    }
+  }
 }

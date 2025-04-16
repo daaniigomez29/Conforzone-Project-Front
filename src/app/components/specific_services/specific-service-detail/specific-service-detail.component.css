@@ -39,3 +39,7 @@ li {
 .img-service {
     height: 30vh;
 }
+
+.link-with-underline-whatsapp {
+    text-decoration: underline;
+}

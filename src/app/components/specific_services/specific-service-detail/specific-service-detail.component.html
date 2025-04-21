@@ -5,7 +5,7 @@
         <img class="img-service" src="../../../../assets/instalacion-split-pared.jpg" alt="">
       </div>
       <div class="col-md-8 d-flex flex-column justify-content-start py-3">
-        <h1 class="fw-bold fs-3 pb-2">Instalación Básica Split Pared hasta 3.500 frigorías</h1>
+        <h1 class="fw-bold fs-3 pb-2">{{specificService.name}}</h1>
         <!--
         <div class="alert alert-warning py-2 fw-bold">
           <i class="fa-solid fa-circle-check"></i> NOSOTROS TE LLAMAMOS PARA PROGRAMAR LA CITA PARA LA INSTALACIÓN
@@ -33,7 +33,7 @@
               </div>
               <small class="text-muted fst-italic">21% IVA incluido</small>
               <div class="d-flex justify-content-md-end justify-content-center pt-3">
-                <button class="btn btn-success">Solicitar presupuesto</button>
+                <button class="btn btn-success"  data-bs-toggle="modal" (click)="step = 1" data-bs-target="#wizardModal">Solicitar presupuesto</button>
               </div>
             </div>
           </div>
@@ -42,6 +42,53 @@
           <i class="fa-solid fa-circle-exclamation"></i> Todos los precios en la página son una <strong>aproximación del precio final</strong>, para confirmación de este consultar precio vía <a class="alert-link link-with-underline" href="https://mail.google.com/mail/?view=cm&fs=1&to=conforzoneeficiencias@gmail.com&su=Hola%20desde%20mi%20web&body=Has%20contactado%20con%20Conforzone%20Eficiencias%20y%20estamos%20para%20atenderte%20en%20lo%20que%20necesites.%20Muchas%20gracias" target="_blank">Email</a> o <a class="alert-link link-with-underline-whatsapp"
             href="https://web.whatsapp.com/send?l=es&phone=34674778285&text=Has contactado con Conforzone Eficiencias y estamos para atenderte en lo que necesites. Muchas gracias"
             target="_blank">Whatsapp</a>.
+        </div>
+      </div>
+
+      <div class="modal fade text-dark" id="wizardModal" tabindex="-1" aria-labelledby="wizardModalLabel" aria-hidden="false">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+      
+            <div class="modal-header">
+              <h5 class="modal-title fw-bold text-dark" id="wizardModalLabel">Solicitar presupuesto</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+    
+            <div class="modal-body">
+              <!-- Paso 1 -->
+              <div *ngIf="step === 1">
+                <div class="text-start pb-3">
+                    <label class="text-dark">¿En que ciudad te gustaría realizar la instalación?</label>
+                </div>
+                <select [(ngModel)]="installationPlace" name="installationPlace" class="form-select mb-3" required="true">
+                  <option value="" disabled>Selecciona una ciudad</option>
+                  <option value="Sevilla">Sevilla</option>
+                  <option value="Cádiz">Cádiz</option>
+                  <option value="Córdoba">Córdoba</option>
+                  <option value="Málaga">Málaga</option>
+                </select>
+                <div class="d-flex gap-3">
+                  <button class="btn btn-danger w-100" data-bs-dismiss="modal">Cancelar</button>
+                  <button class="btn btn-success w-100" (click)="continueModalSelectCity()">Siguiente</button>
+                </div>
+              </div>
+              
+              <!-- Paso 2 -->
+              <div *ngIf="step === 2">
+                <label>¿Cómo te gustaría solicitar el presupuesto?</label>
+                <div class="row py-3">
+                  <div class="col-6 d-flex flex-column justify-content-center">
+                    <button class="btn btn-success"><a [href]="whatsappMessage"
+                      target="_blank" class="text-white"><i class="fa-brands fa-whatsapp fa-2xl"></i> Whatsapp</a></button>
+                  </div>
+                  <div class="col-6 d-flex flex-column justify-content-center">
+                    <button class="btn btn-primary"><i class="fa-solid fa-envelope fa-2xl"></i> Email</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+          </div>
         </div>
       </div>
     </div>

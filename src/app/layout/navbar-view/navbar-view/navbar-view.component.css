@@ -11,7 +11,9 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: rgb(215, 241, 255);
+  background: white;
+  /*background: rgb(215, 241, 255);*/
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
   transition: background 0.2s ease-in-out;
   z-index: 1000;
 }
@@ -49,6 +51,7 @@
 
 .is-home{
   background: transparent !important;
+  box-shadow: 0 0px 0px;
 }
 
 .is-home a {
@@ -66,7 +69,7 @@
 
 .scrolled {
   background: white !important; /* Al hacer scroll se vuelve sólido */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07) !important;
 
 }
 

@@ -8,6 +8,6 @@ export const appConfig: ApplicationConfig = {
   providers: [
     {provide: LOCALE_ID, useValue: 'es-ES'},
     provideRouter(routes),
-    provideHttpClient()
-  ]
+    provideHttpClient()  
+]
 };

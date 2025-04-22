@@ -6,7 +6,6 @@ import {INSTALLATIONS} from '../../../js/installations'
 import {availableContact} from '../../../js/disponibilityHour'
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { trigger, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-specific-service-detail',
@@ -25,22 +24,22 @@ export class SpecificServiceDetailComponent {
 
   specificService:SpecificService = {
     id:this.specificServiceId,
-    name: "Instalación Básica Split Pared hasta 3.500 frigorías",
-    description: ""
+    name: "",
+    description: "",
+    slug:"",
+    firstPrice: 0,
+    pricePerMeter: 0,
+    available: true,
+    offer: false
   }
 
   quantity:number = 1
 
-  servicePrice:number = 150.00
-
-  additionalMeterPrice:number = 33.00
-
   quantityAdditionalMeter:number = 0
 
-  totalPrice:number = this.servicePrice
+  totalPrice:number = 0
 
-  descriptionService:string = "Hasta 3 metros de recorrido frigorífico entre unidad interior y exterior con tubería de cobre de 1/4 y 3/8 con aislamiento térmico para exterior, incluyendo también hasta 3 metros de canaleta de PVC blanca de protección tanto en instalación interior como exterior para la parte vista del circuito frigorífico. Apertura de un calo pasamuros en cerramiento de obra de hasta 40 cm de espesor y posterior sellado del mismo con masilla acrílica blanca (No incluye apertura de huecos en hormigón). Soportes y silentblock en caso de que la unidad exterior vaya colgada en cerramiento, o bien, soportes antivibratorios de suelo en caso de que la unidad exterior esté ubicada en suelo. Hasta 3 metros de cableado de interconexión de maniobra entre unidad interior y exterior. Hasta 3 metros de manguera blanca de alimentación eléctrica entre punto de corriente más cercano y equipo (sin canaleta, fijada con grapas a pared), nuestros técnicos siempre intentarán de que la manguera esté lo menos visible posible. Hasta 3 metros de tubería de desagüe. Accesorios y pequeño material necesario para la instalación";
-  arrayDescription = this.descriptionService.split(".")
+  arrayDescription:string[] = []
 
   step = 1;
   installationPlace = ''
@@ -57,11 +56,17 @@ ngOnInit(){
 
   this.findSlug()
 
-  this.specificServiceService.getSpecificServiceById(this.specificServiceId).subscribe({
+  this.specificServiceService.getSpecificServiceBySlugAndId(this.slug, this.specificServiceId).subscribe({
     next: data => {
       this.specificServiceId = data.id
       this.specificService.name = data.name
       this.specificService.description = data.description
+      this.specificService.firstPrice = data.firstPrice
+      this.specificService.pricePerMeter = data.pricePerMeter
+      this.specificService.available = data.available
+
+      this.totalPrice = data.firstPrice
+      this.arrayDescription = data.description.split(".")
     },
     error : err => {
       console.error(err)
@@ -79,25 +84,25 @@ findSlug(){
 
   increment() {
     this.quantity++;
-    return this.totalPrice = this.totalPrice + this.servicePrice
+    this.totalPrice += this.specificService.firstPrice
   }
-
-  incrementAdditionalMeter() {
-    this.quantityAdditionalMeter++;
-    this.totalPrice = this.totalPrice + this.additionalMeterPrice
-  }
-
+  
   decrement() {
     if(this.quantity > 1) {
       this.quantity--;
-      this.totalPrice = this.totalPrice - this.servicePrice
+      this.totalPrice -= this.specificService.firstPrice
     }
+  }
+  
+  incrementAdditionalMeter() {
+    this.quantityAdditionalMeter++;
+    this.totalPrice += this.specificService.pricePerMeter
   }
 
   decrementAdditionalMeter() {
     if(this.quantityAdditionalMeter > 0) {
       this.quantityAdditionalMeter--;
-      this.totalPrice = this.totalPrice - this.additionalMeterPrice
+      this.totalPrice -= this.specificService.pricePerMeter
     }
   }
 
@@ -112,13 +117,24 @@ findSlug(){
 
   get whatsappMessage() {
     const base = `https://web.whatsapp.com/send?l=es&phone=34674778285&text=`
-    let message = `Buenas! Me gustaría solicitar la ${this.specificService.name}, necesito ${this.quantity} instalación/es, soy de ${this.installationPlace}.`
+    let messageWhatsapp = `Buenas! Me gustaría solicitar la ${this.specificService.name}, necesito ${this.quantity} instalación/es, soy de ${this.installationPlace}.`
 
     if (this.quantityAdditionalMeter > 0) {
-      message = `Buenas! Me gustaría solicitar la instalación ${this.specificService.name}, necesito ${this.quantity} instalación/es, necesitaría además ${this.quantityAdditionalMeter} metro/s adicional/es. Soy de ${this.installationPlace}.`
+      messageWhatsapp = `Buenas! Me gustaría solicitar la instalación ${this.specificService.name}, necesito ${this.quantity} instalación/es, necesitaría además ${this.quantityAdditionalMeter} metro/s adicional/es. Soy de ${this.installationPlace}.`
     }
 
-    return base + encodeURIComponent(message)
+    return base + encodeURIComponent(messageWhatsapp)
+  }
+
+  get emailMessage() {
+    const base = `https://mail.google.com/mail/?view=cm&fs=1&to=conforzoneeficiencias@gmail.com&su=Solicitud%20de%20presupuesto&body=`
+    let messageEmail = `Buenas!%20Me%20gustaría%20solicitar%20la%20${this.specificService.name},%20necesito%20${this.quantity}%20instalación/es.%20Soy%20de%20${this.installationPlace}.`
+
+    if (this.quantityAdditionalMeter > 0) {
+      messageEmail = `Buenas!%20Me%20gustaría%20solicitar%20la%20${this.specificService.name},%20necesito%20${this.quantity}%20instalación/es,%20necesitaría%20además%20${this.quantityAdditionalMeter}%20metro/s%20adicional/es.%20Soy%20de%20${this.installationPlace}.`
+    }
+
+    return base + messageEmail
   }
 
 }

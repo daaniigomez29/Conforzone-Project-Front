@@ -1,5 +1,6 @@
 <div class="specific-service-detail">
   <div class="container p-5">
+    @if (this.specificService.name) {
     <div class="row border rounded bg-white text-center text-md-start py-2">
       <div class="col-md-4 d-flex justify-content-center align-items-center">
         <img class="img-service" src="../../../../assets/instalacion-split-pared.jpg" alt="">
@@ -29,7 +30,7 @@
             <div class="col-md-6 text-center text-md-end">
               <div class="d-flex justify-content-center justify-content-md-end align-items-baseline gap-2">
                 <span class="text-muted">Precio total:</span>
-                <span class="fs-3 fw-bold">{{ totalPrice | number:'1.2-2' }}€</span>
+                <span class="fs-3 fw-bold">{{ (totalPrice > this.specificService.firstPrice ? totalPrice : this.specificService.firstPrice) | number:'1.2-2' }}€</span>
               </div>
               <small class="text-muted fst-italic">21% IVA incluido</small>
               <div class="d-flex justify-content-md-end justify-content-center pt-3">
@@ -82,7 +83,7 @@
                       target="_blank" class="text-white"><i class="fa-brands fa-whatsapp fa-2xl"></i> Whatsapp</a></button>
                   </div>
                   <div class="col-6 d-flex flex-column justify-content-center">
-                    <button class="btn btn-primary"><i class="fa-solid fa-envelope fa-2xl"></i> Email</button>
+                    <button class="btn btn-primary"><a [href]="emailMessage" target="_blank" class="text-white"><i class="fa-solid fa-envelope fa-2xl"></i> Email</a></button>
                   </div>
                 </div>
               </div>
@@ -124,7 +125,7 @@
         </div>
         <div class="tab-pane fade" id="additionalMeters" role="tabpanel" aria-labelledby="additionalMeters-tab">
           <p class="mb-3 mt-3">Si los 3 metros de recorrido incluidos en la instalación <strong>no son suficientes</strong> puede añadir un
-           <strong>metro adicional por {{additionalMeterPrice | number : '1.2-2'}}€</strong>. En caso de que no tenga claro los metros adicionales que va a necesitar, no se preocupe, nuestros técnicos lo medirán y se lo añadirán a la factura final.</p>
+           <strong>metro adicional por {{specificService.pricePerMeter | number : '1.2-2'}}€</strong>. En caso de que no tenga claro los metros adicionales que va a necesitar, no se preocupe, nuestros técnicos lo medirán y se lo añadirán a la factura final.</p>
            <div class="border mb-3 rounded p-3 bg-light">
             <div class="row align-items-center text-center text-md-start">
               <div class="col-md-6 mb-3 mb-md-0">
@@ -138,7 +139,7 @@
                 </div>
               </div>
               <div class="col-md-6 text-center text-md-end">
-                <h4 class="fw-bold mb-1">{{ additionalMeterPrice | number:'1.2-2' }}€</h4>
+                <h4 class="fw-bold mb-1">{{ specificService.pricePerMeter | number:'1.2-2' }}€</h4>
                 <small class="text-muted fst-italic">21% IVA incluido</small>
               </div>
               <div class="col-md-6 text-center text-md-end py-3 d-block d-lg-none">
@@ -188,5 +189,10 @@
         </div>
       </div>
     </div>
+    } @else {
+      <div>
+        <h2 class="fw-medium">El servicio que busca no se encuentra disponible en este momento</h2>
+      </div>
+    }
   </div>
 </div>

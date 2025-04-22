@@ -11,11 +11,11 @@ export class SpecificServiceService {
 
   constructor(public http:HttpClient) { }
 
-  getAllSpecificServicesBySlug(slug:string){
-    return this.http.get<SpecificService[]>(`${this.apiUrl}/${slug}`)
+  getAllSpecificServicesBySlug(slug:string | null){
+    return this.http.get<SpecificService[]>(`${this.apiUrl}/slug/${slug}`)
   }
 
-  getSpecificServiceById(id:number){
-    return this.http.get<SpecificService>(`${this.apiUrl}/${id}`)
+  getSpecificServiceBySlugAndId(slug:string | null, id:number){
+    return this.http.get<SpecificService>(`${this.apiUrl}/${slug}/${id}`)
   }
 }

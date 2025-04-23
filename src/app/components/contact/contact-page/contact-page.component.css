@@ -12,3 +12,18 @@
       width: 50%;
     }
   }
+
+  .custom-input::placeholder {
+    color: gray;
+    font-style: italic;
+    font-size: 14px;
+    opacity: 1; /* por defecto en algunos navegadores es 0.5 */
+  }
+
+.disabled {
+  transition: opacity .25s ease-in-out;
+}  
+
+.no-disabled {
+  transition: opacity .10s ease-in;
+}

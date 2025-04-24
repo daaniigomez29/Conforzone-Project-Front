@@ -1,3 +1,14 @@
 <div class="offers">
-    <p>offers-page works!</p>
+    <div class="container p-md-5 p-4">
+        <div class="d-flex justify-content-md-center">
+            <h1 class="fw-bold pb-3">Ofertas</h1>
+        </div>
+        <div>
+            <p>Si necesita instalar otro equipo diferente como multisplit, aire por conductos, aire suelo techo, etc.
+                consulte nuestro <a class="link-with-color" routerLink="/servicios">apartado de instalaciones</a>. Ofrecemos
+                servicio de instalación de aire acondicionado en Sevilla. Para otras provincias como Huelva, Cádiz, Córdoba y Málaga <strong>consultar presupuesto</strong>.
+            </p>
+        </div>
+        <app-specific-services-general-view [slug]="'offers'" [specificServicesArray]="offersArray" [linkSlug]="getLink('/ofertas')"></app-specific-services-general-view>
+    </div>
 </div>

@@ -6,11 +6,12 @@ import { SubjectEnums } from '../../../interfaces/SubjectEnums';
 import { EmailModel } from '../../../interfaces/EmailModel';
 import { ValidatorService } from '../../../validators/validator.service';
 import Swal from 'sweetalert2';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-contact-page',
   standalone: true,
-  imports: [FormsModule, CommonModule, ReactiveFormsModule],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './contact-page.component.html',
   styleUrl: './contact-page.component.css'
 })
@@ -26,6 +27,8 @@ export class ContactPageComponent {
 
   isInputChecked:boolean = false;
 
+  formSubmitted:boolean = false;
+
   public constructor(private emailService:EmailService, private fb:FormBuilder, private validatorService:ValidatorService){}
 
 
@@ -38,7 +41,7 @@ export class ContactPageComponent {
 
   noValid(field: string): boolean {
     const control = this.formContactEmail?.controls[field];
-    return control?.invalid && (control?.touched || control?.dirty);  }
+    return control?.invalid && (control?.touched || this.formSubmitted);  }
 
   get emailError(): string {
     const errors = this.formContactEmail.get('fromEmail')?.errors
@@ -61,6 +64,7 @@ export class ContactPageComponent {
 
 
   sendEmail(){
+    this.formSubmitted = true;
     this.formContactEmail.markAllAsTouched();
     if(this.formContactEmail.valid){
       this.emailModel.fromEmail = this.formContactEmail.value.fromEmail;

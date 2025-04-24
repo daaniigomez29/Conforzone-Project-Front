@@ -18,4 +18,12 @@ export class SpecificServiceService {
   getSpecificServiceBySlugAndId(slug:string | null, id:number){
     return this.http.get<SpecificService>(`${this.apiUrl}/${slug}/${id}`)
   }
+
+  getSpecificServicesOffers() {
+    return this.http.get<SpecificService[]>(`${this.apiUrl}/offers`)
+  }
+
+  getOfferSpecificServicesById(id:number) {
+    return this.http.get<SpecificService>(`${this.apiUrl}/services/offers/${id}`)
+  }
 }

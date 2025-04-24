@@ -51,7 +51,7 @@ Accesorios y pequeño material necesario para la instalación
 --CONDUCTOS 3150 FRIGORÍAS--
 Hasta 3 metros de tubería frigorífica de cobre de 1/4" y 3/8" con aislamiento térmico para exterior. (En el caso de que haya que alargar las tuberías de la preinstalación existente).
 Patas de suelo antivibratorias para unidad exterior.
-Hasta 3 metros de cableado de interconexión y de alimentación (En el caso de que haya que alargarlos también)
+Hasta 3 metros de cableado de interconexión y de alimentación (En el caso de que haya que alargarlos también).
 Conexión de tubería de desagüe desde unidad interior a punto previsto en la preinstalación.
 Embocadura de unidad interior con conductos existentes realizado con panel rígido de fibra de vidrio.
 Accesorios y pequeño material necesario para la instalación
@@ -59,7 +59,7 @@ Accesorios y pequeño material necesario para la instalación
 --CONDUCTOS 4500 FRIGORÍAS--
 Hasta 3 metros de tubería frigorífica de cobre de 1/4" y 1/2" con aislamiento térmico para exterior. (En el caso de que haya que alargar las tuberías de la preinstalación existente).
 Patas de suelo antivibratorias para unidad exterior.
-Hasta 3 metros de cableado de interconexión y de alimentación (En el caso de que haya que alargarlos también)
+Hasta 3 metros de cableado de interconexión y de alimentación (En el caso de que haya que alargarlos también).
 Conexión de tubería de desagüe desde unidad interior a punto previsto en la preinstalación.
 Embocadura de unidad interior con conductos existentes realizado con panel rígido de fibra de vidrio.
 Accesorios y pequeño material necesario para la instalación
@@ -68,13 +68,13 @@ Accesorios y pequeño material necesario para la instalación
 --CONDUCTOS 6150 7500 9000 FRIGORÍAS--
 Hasta 3 metros de tubería frigorífica de cobre de 5/8" y 3/8" con aislamiento térmico para exterior. (En el caso de que haya que alargar las tuberías de la preinstalación existente).
 Patas de suelo antivibratorias para unidad exterior.
-Hasta 3 metros de cableado de interconexión y de alimentación (En el caso de que haya que alargarlos también)
+Hasta 3 metros de cableado de interconexión y de alimentación (En el caso de que haya que alargarlos también).
 Conexión de tubería de desagüe desde unidad interior a punto previsto en la preinstalación.
 Embocadura de unidad interior con conductos existentes realizado con panel rígido de fibra de vidrio.
 Accesorios y pequeño material necesario para la instalación
 
 
---CONDUCTOS 10750 FRIGORÍAS--
+--CONDUCTOS 10750 2000 FRIGORÍAS--
 Hasta 3 metros de tubería frigorífica de cobre de 5/8"(3/4") y 3/8" con aislamiento térmico para exterior. (En el caso de que haya que alargar las tuberías de la preinstalación existente).
 Patas de suelo antivibratorias para unidad exterior.
 Hasta 3 metros de cableado de interconexión y de alimentación (En el caso de que haya que alargarlos también).

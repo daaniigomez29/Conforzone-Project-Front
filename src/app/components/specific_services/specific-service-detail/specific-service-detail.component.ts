@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, RouterModule, RouterOutlet } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { SpecificServiceService } from '../../../services/specific-service.service';
 import { SpecificService } from '../../../interfaces/SpecificService';
-import {INSTALLATIONS} from '../../../js/installations'
-import {availableContact} from '../../../js/disponibilityHour'
+import { INSTALLATIONS } from '../../../js/installations'
+import { availableContact } from '../../../js/disponibilityHour'
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -16,98 +16,128 @@ import { FormsModule } from '@angular/forms';
 })
 export class SpecificServiceDetailComponent {
 
-  specificServiceId:number = -1
+  isOfferPage: boolean = false
 
-  slug:string | null = ""
+  specificServiceId: number = -1
 
-  installationLabel:string | undefined = ""
+  slug: string | null = ""
 
-  specificService:SpecificService = {
-    id:this.specificServiceId,
+  installationLabel: string | undefined = ""
+
+  specificService: SpecificService = {
+    id: this.specificServiceId,
     name: "",
     description: "",
-    slug:"",
+    slug: "",
     firstPrice: 0,
     pricePerMeter: 0,
     available: true,
     offer: false
   }
 
-  quantity:number = 1
+  quantity: number = 1
 
-  quantityAdditionalMeter:number = 0
+  quantityAdditionalMeter: number = 0
 
-  totalPrice:number = 0
+  totalPrice: number = 0
 
-  arrayDescription:string[] = []
+  arrayDescription: string[] = []
 
   step = 1;
   installationPlace = ''
   unidadesInterior = 1;
 
-public constructor(public route:ActivatedRoute, public specificServiceService:SpecificServiceService){
+  public constructor(public route: ActivatedRoute, private router: Router, public specificServiceService: SpecificServiceService) {
 
-}
+  }
 
-ngOnInit(){
-  let id = this.route.snapshot.params['id']
-  this.slug = this.route.snapshot.params['slug']
-  this.specificServiceId = id ? id : 0
+  ngOnInit() {
+    let id = this.route.snapshot.params['id']
+    this.specificServiceId = id ? id : 0
 
-  this.findSlug()
+    this.isOfferPage = this.router.url.includes('ofertas') ? true : false
 
-  this.specificServiceService.getSpecificServiceBySlugAndId(this.slug, this.specificServiceId).subscribe({
-    next: data => {
-      this.specificServiceId = data.id
-      this.specificService.name = data.name
-      this.specificService.description = data.description
-      this.specificService.firstPrice = data.firstPrice
-      this.specificService.pricePerMeter = data.pricePerMeter
-      this.specificService.available = data.available
 
-      this.totalPrice = data.firstPrice
-      this.arrayDescription = data.description.split(".")
-    },
-    error : err => {
-      console.error(err)
+    if (!this.isOfferPage) {
+      this.obtainDataFromSpecificService(id)
+    } else {
+      this.obtainDataFromOfferSpecificService(id)
     }
-  })
 
-  availableContact("link-with-underline-whatsapp", "disabled")
-}
+    availableContact("link-with-underline-whatsapp", "disabled")
+  }
 
-findSlug(){
+  findSlug() {
     this.slug = this.route.snapshot.paramMap.get('slug')
     const match = INSTALLATIONS.find(i => i.slug === this.slug)
     this.installationLabel = match ? INSTALLATIONS.find(i => i.slug === this.slug)?.label : ''
+  }
+
+  obtainDataFromSpecificService(idSprecificService:number) {
+    this.slug = this.route.snapshot.params['slug']
+
+    this.findSlug()
+
+    this.specificServiceService.getSpecificServiceBySlugAndId(this.slug, idSprecificService).subscribe({
+      next: data => {
+        this.specificServiceId = data.id
+        this.specificService.name = data.name
+        this.specificService.description = data.description
+        this.specificService.firstPrice = data.firstPrice
+        this.specificService.pricePerMeter = data.pricePerMeter
+        this.specificService.available = data.available
+
+        this.totalPrice = data.firstPrice
+        this.arrayDescription = data.description.split(".")
+      },
+      error: err => {
+        console.error(err)
+      }
+    })
+  }
+
+  obtainDataFromOfferSpecificService(idSprecificService:number) {
+    this.specificServiceService.getOfferSpecificServicesById(idSprecificService).subscribe({
+      next: data => {
+        this.specificServiceId = data.id
+        this.specificService.name = data.name
+        this.specificService.description = data.description
+        this.specificService.firstPrice = data.firstPrice
+        this.specificService.pricePerMeter = data.pricePerMeter
+        this.specificService.available = data.available
+
+        this.totalPrice = data.firstPrice
+        this.arrayDescription = data.description.split(".")
+      }
+    })
   }
 
   increment() {
     this.quantity++;
     this.totalPrice += this.specificService.firstPrice
   }
-  
+
   decrement() {
-    if(this.quantity > 1) {
+    if (this.quantity > 1) {
       this.quantity--;
       this.totalPrice -= this.specificService.firstPrice
     }
   }
-  
+
   incrementAdditionalMeter() {
     this.quantityAdditionalMeter++;
     this.totalPrice += this.specificService.pricePerMeter
   }
 
   decrementAdditionalMeter() {
-    if(this.quantityAdditionalMeter > 0) {
+    if (this.quantityAdditionalMeter > 0) {
       this.quantityAdditionalMeter--;
       this.totalPrice -= this.specificService.pricePerMeter
     }
   }
 
   continueModalSelectCity() {
-    if(this.installationPlace){
+    if (this.installationPlace) {
       this.step = 2
     } else {
       alert("Por favor, seleccione una ciudad para continuar")

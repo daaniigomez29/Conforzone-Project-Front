@@ -4,11 +4,12 @@ import { SpecificServiceService } from '../../../services/specific-service.servi
 import {INSTALLATIONS} from '../../../js/installations'
 import { SpecificService } from '../../../interfaces/SpecificService';
 import { CommonModule } from '@angular/common';
+import { SpecificServicesGeneralViewComponent } from '../specific-services-general-view/specific-services-general-view.component';
 
 @Component({
   selector: 'app-specific-service',
   standalone: true,
-  imports: [RouterModule, CommonModule],
+  imports: [RouterModule, CommonModule, SpecificServicesGeneralViewComponent],
   templateUrl: './specific-service.component.html',
   styleUrl: './specific-service.component.css'
 })
@@ -18,7 +19,6 @@ export class SpecificServiceComponent {
 
     installationName:string = ''
     installationPhrase:string | undefined = ''
-    readonly repeatCount = Array.from({ length: 5 });
 
     specificServicesArray:SpecificService[] = []
 
@@ -44,5 +44,9 @@ export class SpecificServiceComponent {
     const match = INSTALLATIONS.find(i => i.slug === this.slug)
     this.installationPhrase = INSTALLATIONS.find(i => i.slug === this.slug)?.subname
     this.installationName = match ? match.name : 'La instalación no se ha encontrado o no existe'
+  }
+
+  getLink(slug:string) {
+    return `/servicios/${slug}`
   }
 }

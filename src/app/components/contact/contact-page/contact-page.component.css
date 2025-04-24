@@ -27,3 +27,7 @@
 .no-disabled {
   transition: opacity .10s ease-in;
 }
+
+.link-with-underline:hover {
+  color: rgb(10, 9, 24) !important;
+}

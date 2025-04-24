@@ -12,6 +12,7 @@ import { SpecificServiceComponent } from './components/specific_services/specifi
 import { SpecificServiceDetailComponent } from './components/specific_services/specific-service-detail/specific-service-detail.component';
 import { LoginComponent } from './components/users/login/login.component';
 import { PageNotFoundComponent } from './components/page_not_found/page-not-found/page-not-found.component';
+import { PagePrivacityPolicyComponent } from './components/page_policy/page-privacity-policy/page-privacity-policy.component';
 
 export const routes: Routes = [
     {path: '', redirectTo:'inicio', pathMatch:'full'},
@@ -26,6 +27,8 @@ export const routes: Routes = [
             {path: 'contacto', component:ContactPageComponent},
             {path: 'servicios/:slug', component: SpecificServiceComponent},
             {path: 'servicios/:slug/:id', component: SpecificServiceDetailComponent},
+            {path: 'ofertas/:id', component: SpecificServiceDetailComponent},
+            {path:'politica-de-privacidad', component: PagePrivacityPolicyComponent},
             {path: '**', redirectTo:'/inicio'}
         ]
     },

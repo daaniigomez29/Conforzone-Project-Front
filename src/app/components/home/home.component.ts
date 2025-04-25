@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { INSTALLATIONS } from '../../js/installations';
 
 @Component({
   selector: 'app-home',
@@ -13,13 +14,21 @@ import { Router, RouterModule } from '@angular/router';
 export class HomeComponent {
 
   step = 1;
-  installationType = '';
   installationPlace = ''
-  unidadesInterior = 1;
+  
+  //Step 1
+  installationType = '';
+
+  //Step 2 (Services)
+  installationsType = INSTALLATIONS;
+  installationService = '';
+
+  //Step 2 (Offers)
+
+  //Step 3 ()
 
   enviarPresupuesto() {
     this.step = 1
-    console.log('Enviado:', this.installationType, this.unidadesInterior);
     // Aquí puedes cerrar el modal manualmente si usas ViewChild o servicios
   }
 

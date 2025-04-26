@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EmailService {
 
-  apiUrl:string = "http://localhost:8080/api/v1/email";
+  apiUrl:string = "https://conforzone-project-back-production.up.railway.app/api/v1/email";
 
   constructor(private http:HttpClient) { }
 

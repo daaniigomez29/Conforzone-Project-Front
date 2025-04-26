@@ -1,0 +1,45 @@
+.specific-service-detail {
+    margin-top: 130px !important;
+}
+
+h1 {
+    font-size: 25px;
+}
+
+li {
+    padding-bottom: 5px;
+}
+
+.alert {
+    position:static;
+}
+
+.alert-link.disabled {
+    text-decoration: none;
+}
+
+.tab-content p {
+    font-weight: 500;
+}
+
+.nav-link {
+    border: none;
+    color: grey;
+}
+
+.nav-link.active {
+    border-bottom: 2px solid #000;
+  }
+
+.nav-link:not(.active):hover {
+    border: 0px;
+    color: black;
+}
+
+.img-service {
+    height: 30vh;
+}
+
+.link-with-underline-whatsapp {
+    text-decoration: underline;
+}

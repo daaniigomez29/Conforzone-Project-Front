@@ -1,0 +1,133 @@
+<!-- Navbar PC-->
+<nav class="navbar navbar-pc d-none d-lg-block">
+    <div class="container-xl d-flex justify-content-center">
+        <div class="d-flex align-items-center gap-4">
+            <div class="">
+                <img src="../../../assets/logo_conforzone.png" alt="Logo" routerLink="/inicio"
+                    class="pointer logo" />
+            </div>
+            <div class="">
+                <ul class="navbar-nav d-flex flex-row gap-3">
+                    <li class="navbar-item hvr-underline-from-center">
+                        <a class="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink='inicio'><i class="fa-solid fa-house"></i> Inicio</a>
+                    </li>
+                    <li class="navbar-item hvr-underline-from-center">
+                        <a routerLink="sobre-nosotros" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><i class="fa-solid fa-users"></i> Sobre nosotros</a>
+                    </li>
+                    <li class="navbar-item hvr-underline-from-center">
+                        <a routerLink='servicios' routerLinkActive="active"><i class="fa-solid fa-screwdriver-wrench"></i>
+                            Servicios</a>
+                    </li>
+                    <li class="navbar-item hvr-underline-from-center">
+                        <a routerLink='nuestro-trabajo' routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><i class="fa-solid fa-list-check"></i> Nuestro
+                            trabajo</a>
+                    </li>
+                    <li class="navbar-item hvr-underline-from-center">
+                        <a routerLink='ofertas' routerLinkActive="active"><i class="fa-solid fa-tags"></i> Ofertas</a>
+                    </li>
+                    <li class="navbar-item hvr-underline-from-center">
+                        <a routerLink='contacto' routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"><i class="fa-solid fa-phone"></i> Contacto</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="d-flex float-right p-4">
+            @if (authService.isAuthenticated()) {
+            <div class="">
+                    <button class="btn btn-primary pointer" (click)="logout()">Cerrar sesión</button>
+            </div>
+            }
+        </div>
+    </div>
+</nav>
+
+<!--Navbar MOBILE-->
+<nav class="navbar navbar-mobile d-block d-lg-none" style="z-index: 9999;">
+    <div class="container-fluid d-flex justify-content-between align-items-center">
+        <!-- Button open menu -->
+        <img src="../../../assets/logo_conforzone.png" alt="Logo" routerLink="/inicio" class="pointer logo"
+        priority />
+        <button class="navbar-toggler bg-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<div class="fondo wrapper">
+    <header class=""> 
+        <!--
+        <div class="header-nav clearfix">
+            <div class="container p-3">
+                <div class="header-nav-wrapper">
+                    <div class="header-li">
+                        <ul class="d-flex gap-3">
+                            <li><i class="fa-solid fa-location-dot"></i> Nuestra empresa</li>
+                            <li><i class="fa-solid fa-envelope"></i> Contáctanos</li>
+                        </ul>
+                        <ul class="d-flex gap-3">
+                            <li><i class="fa-solid fa-shop"></i> Tlf. <strong>111 11 11 11</strong> De L-J de
+                                8:00h-14:00h / 16:30h-19:00h Viernes de 8:00h-14:00h</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            -->
+        <!--Whatsapp button-->
+        <a href="https://web.whatsapp.com/send?l=es&phone=34674778285&text=Has contactado con Conforzone Eficiencias y estamos para atenderte en lo que necesites. Muchas gracias"
+            target="_blank"
+            class="rounded-circle position-fixed bottom-0 end-0 m-4 whatsapp-icon d-flex justify-content-center align-items-center"
+            data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="hover"
+            [attr.data-bs-content]="availableContactFlag ? 'Contacta con nosotros!' : 'Estamos cerrados, contacte con nosotros via Whatsapp en las horas disponibles'"
+            >
+            <i class="fa-brands fa-whatsapp fa-2xl"></i>
+        </a>
+    </header>
+
+    <!-- Navbar mobile-->
+    <header class="d-block d-lg-none">
+        
+
+        <!-- Menú lateral móvil desplegable -->
+        <div class="offcanvas offcanvas-end text-bg-white offcanvas-mobile" tabindex="-1" id="mobileMenu" style="z-index: 10000;">
+            <div class="offcanvas-header border-bottom border-dark">
+                <h5 class="offcanvas-title text-dark">Navegación</h5>
+                <button type="button" class="btn-close btn-close-dark" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <!--
+            <div class="offcanvas-header border-bottom border-dark">
+                <button class="btn btn-outline-dark"><i class="fa-solid fa-user"></i> Iniciar sesión</button>
+            </div>
+            -->
+            <div class="offcanvas-body border-bottom border-dark">
+                <ul class="navbar-nav text-dark">
+                    <li class="navbar-item"><a class="nav-link" routerLink="inicio" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-bs-dismiss="offcanvas"><i
+                                class="fa-solid fa-house"></i> Inicio</a></li>
+                    <li class="navbar-item"><a class="nav-link" routerLink='sobre-nosotros' routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-bs-dismiss="offcanvas"><i
+                                class="fa-solid fa-users"></i> Sobre nosotros</a></li>
+                    <li class="navbar-item"><a class="nav-link" routerLink='servicios' routerLinkActive="active" data-bs-dismiss="offcanvas"><i
+                                class="fa-solid fa-screwdriver-wrench"></i> Servicios</a></li>
+                    <li class="navbar-item"><a class="nav-link" routerLink='nuestro-trabajo' routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-bs-dismiss="offcanvas"><i
+                                class="fa-solid fa-list-check"></i> Nuestro trabajo</a></li>
+                    <li class="navbar-item"><a class="nav-link" routerLink='ofertas' routerLinkActive="active" data-bs-dismiss="offcanvas"><i
+                                class="fa-solid fa-tags"></i> Ofertas</a></li>
+                    <li class="navbar-item"><a class="nav-link" routerLink='contacto' routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" data-bs-dismiss="offcanvas"><i
+                                class="fa-solid fa-phone"></i> Contacto</a></li>
+                </ul>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="d-flex flex-column p-0 gap-3 text-dark">
+                    <li><i class="fa-solid fa-location-dot"></i> Nuestra empresa</li>
+                    <li><i class="fa-solid fa-envelope"></i> <a class="link-with-color" href="https://mail.google.com/mail/?view=cm&fs=1&to=conforzoneeficiencias@gmail.com&su=Contacto&body=Has%20contactado%20con%20Conforzone%20Eficiencias%20y%20estamos%20para%20atenderte%20en%20lo%20que%20necesites.%20Muchas%20gracias" target="_blank"> Contáctanos</a></li>
+                    <li><i class="fa-solid fa-shop"></i> Tlf. <strong>(+34) 674 86 78 24</strong></li>
+                    <li><i class="fa-solid fa-clock"></i> De L-V de <strong>8:00h-20:00h</strong> y &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sábado de <strong>9:00h-14:00h</strong></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="fondo-componentes main-content">
+        <router-outlet></router-outlet>
+    </div>
+
+    <!--FOOTER-->
+    <app-footer></app-footer>
+</div>

@@ -1,0 +1,225 @@
+<div class="specific-service-detail">
+  <div class="container p-5">
+    @if (this.specificService.name) {
+    <div class="row border rounded bg-white text-center text-md-start py-2">
+      <div class="col-md-4 d-flex justify-content-center align-items-center">
+        <img class="img-service" src="../../../../assets/instalacion-split-pared.jpg" alt="">
+      </div>
+      <div class="col-md-8 d-flex flex-column justify-content-start py-3">
+        <h1 class="fw-bold fs-3 pb-2">{{specificService.name}}</h1>
+        <!--
+        <div class="alert alert-warning py-2 fw-bold">
+          <i class="fa-solid fa-circle-check"></i> NOSOTROS TE LLAMAMOS PARA PROGRAMAR LA CITA PARA LA INSTALACIÓN
+        </div>
+        -->
+        <p class="mb-2 fw-medium">Precios de instalación para equipos <strong>{{ installationLabel }}</strong>
+          suministrados por <strong>Conforzone Eficiencias</strong>.</p>
+        <p class="mb-4 fw-medium">Garantía de <strong>3 años</strong> en nuestra instalación realizada.</p>
+        @if (!this.specificService.available) {
+        <div class="alert alert-danger py-2 fw-medium">
+          @if (isOfferPage) {
+          <i class="fa-solid fa-circle-exclamation"></i> Producto sin stock.
+          } @else {
+          <i class="fa-solid fa-circle-exclamation"></i> Servicio no disponible.
+          }
+        </div>
+        }
+
+        <div class="border mb-3 rounded p-3 bg-light">
+          <div class="row align-items-center text-center text-md-start">
+            <div class="col-md-6 mb-3 mb-md-0">
+              <div
+                class="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start align-items-center gap-3">
+                <h5 class="fw-bold mb-0">Cantidad:</h5>
+                <div class="d-flex gap-3 align-items-center">
+                  <button (click)="decrement()" class="btn btn-outline-primary px-3">-</button>
+                  <span class="fs-5">{{ quantity }}</span>
+                  <button (click)="increment()" class="btn btn-outline-primary px-3">+</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+              <div class="d-flex justify-content-center justify-content-md-end align-items-baseline gap-2">
+                <span class="text-muted">Precio total:</span>
+                <span class="fs-3 fw-bold">{{ (totalPrice > this.specificService.firstPrice ? totalPrice :
+                  this.specificService.firstPrice) | number:'1.2-2' }}€</span>
+              </div>
+              <small class="text-muted fst-italic">21% IVA incluido</small>
+              <div class="d-flex justify-content-md-end justify-content-center pt-3">
+                <button class="btn btn-success" data-bs-toggle="modal" (click)="step = 1"
+                  data-bs-target="#wizardModal">Solicitar presupuesto</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="alert alert-info py-2 fw-medium">
+          <i class="fa-solid fa-circle-exclamation"></i> Todos los precios en la página son una <strong>aproximación del
+            precio final</strong>, para confirmación de este consultar precio vía <a
+            class="alert-link link-with-underline"
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=conforzoneeficiencias@gmail.com&su=Contacto&body=Has%20contactado%20con%20Conforzone%20Eficiencias%20y%20estamos%20para%20atenderte%20en%20lo%20que%20necesites.%20Muchas%20gracias"
+            target="_blank">Email</a>
+          o
+          <a #whatsappLink class="alert-link link-with-underline-whatsapp"
+            href="https://web.whatsapp.com/send?l=es&phone=34674778285&text=Has contactado con Conforzone Eficiencias y estamos para atenderte en lo que necesites. Muchas gracias"
+            target="_blank">Whatsapp</a>.
+        </div>
+      </div>
+
+      <div class="modal fade text-dark" id="wizardModal" tabindex="-1" aria-labelledby="wizardModalLabel"
+        aria-hidden="false">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h5 class="modal-title fw-bold text-dark" id="wizardModalLabel">Solicitar presupuesto</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+
+            <div class="modal-body">
+              <!-- Paso 1 -->
+              <div *ngIf="step === 1">
+                <div class="text-start pb-3">
+                  <label class="text-dark">¿En que ciudad te gustaría realizar la instalación?</label>
+                </div>
+                <select [(ngModel)]="installationPlace" name="installationPlace" class="form-select mb-3"
+                  required="true">
+                  <option value="" disabled>Selecciona una ciudad</option>
+                  <option value="Sevilla">Sevilla</option>
+                  <option value="Cádiz">Cádiz</option>
+                  <option value="Córdoba">Córdoba</option>
+                  <option value="Málaga">Málaga</option>
+                </select>
+                <div class="d-flex gap-3">
+                  <button class="btn btn-danger w-100" data-bs-dismiss="modal">Cancelar</button>
+                  <button class="btn btn-success w-100" (click)="continueModalSelectCity()">Siguiente</button>
+                </div>
+              </div>
+
+              <!-- Paso 2 -->
+              <div *ngIf="step === 2">
+                <label>¿Cómo te gustaría solicitar el presupuesto?</label>
+                <div class="row py-3">
+                  <div class="col-6 d-flex flex-column justify-content-center">
+                    <button class="btn btn-success"><a [href]="whatsappMessage" target="_blank" class="text-white"><i
+                          class="fa-brands fa-whatsapp fa-2xl"></i> Whatsapp</a></button>
+                  </div>
+                  <div class="col-6 d-flex flex-column justify-content-center">
+                    <button class="btn btn-primary"><a [href]="emailMessage" target="_blank" class="text-white"><i
+                          class="fa-solid fa-envelope fa-2xl"></i> Email</a></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row py-4">
+      <ul class="nav nav-tabs fw-bold" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="description-tab" data-bs-toggle="tab" data-bs-target="#description"
+            type="button" role="tab" aria-controls="description" aria-selected="true">DESCRIPCIÓN</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="additionalMeters-tab" data-bs-toggle="tab" data-bs-target="#additionalMeters"
+            type="button" role="tab" aria-controls="additionalMeters" aria-selected="false">METROS ADICIONALES</button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="guarantee-tab" data-bs-toggle="tab" data-bs-target="#guarantee" type="button"
+            role="tab" aria-controls="guarantee" aria-selected="false">GARANTÍA</button>
+        </li>
+      </ul>
+
+      <div class="tab-content rounded border-end border-bottom border-start" id="myTabContent">
+        <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+          <p class="pt-3 fw-medium">Nuestra instalación básica de {{installationLabel}} incluye:</p>
+          <ul class="li-with-dots px-3">
+            @for (description of arrayDescription; track $index) {
+            <li class="">{{description}}</li>
+            }
+          </ul>
+          <p>Sólo empleamos materiales de alta calidad y mano de obra especializada para el perfecto desempeño de
+            nuestras instalaciones.</p>
+          <p>En el caso de que la vivienda tenga preinstalación existente, se considera el mismo precio que una
+            instalación nueva.</p>
+          <p>Las instalaciones realizadas tienen que quedar accesibles para no perder la garantía del fabricante.</p>
+        </div>
+        <div class="tab-pane fade" id="additionalMeters" role="tabpanel" aria-labelledby="additionalMeters-tab">
+          <p class="mb-3 mt-3">Si los 3 metros de recorrido incluidos en la instalación <strong>no son
+              suficientes</strong> puede añadir un
+            <strong>metro adicional por {{specificService.pricePerMeter | number : '1.2-2'}}€</strong>. En caso de que
+            no tenga claro los metros adicionales que va a necesitar, no se preocupe, nuestros técnicos lo medirán y se
+            lo añadirán a la factura final.
+          </p>
+          <div class="border mb-3 rounded p-3 bg-light">
+            <div class="row align-items-center text-center text-md-start">
+              <div class="col-md-6 mb-3 mb-md-0">
+                <div
+                  class="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start align-items-center gap-3">
+                  <h5 class="fw-bold mb-0">Cantidad de metros:</h5>
+                  <div class="d-flex gap-3 align-items-center">
+                    <button (click)="decrementAdditionalMeter()" class="btn btn-outline-primary px-3">-</button>
+                    <span class="fs-5">{{ quantityAdditionalMeter }}</span>
+                    <button (click)="incrementAdditionalMeter()" class="btn btn-outline-primary px-3">+</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 text-center text-md-end">
+                <h4 class="fw-bold mb-1">{{ specificService.pricePerMeter | number:'1.2-2' }}€</h4>
+                <small class="text-muted fst-italic">21% IVA incluido</small>
+              </div>
+              <div class="col-md-6 text-center text-md-end py-3 d-block d-lg-none">
+                <div class="d-flex justify-content-center justify-content-md-end align-items-baseline gap-2">
+                  <span class="text-muted">Precio total:</span>
+                  <span class="fs-3 fw-bold">{{ totalPrice | number:'1.2-2' }}€</span>
+                </div>
+                <small class="text-muted fst-italic">21% IVA incluido</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="guarantee" role="tabpanel" aria-labelledby="guarantee-tab">
+          <h2 class="mb-3 mt-3 fw-bold" style="color: rgb(70, 70, 70); font-size:20px;">La Garantía mínima en todos
+            nuestros productos ofrecida por el fabricante es de 3 años</h2>
+          <h5 class="fw-bold pb-2">Desde el 1 de enero de 2022 está vigente la normativa aprobada en abril de 2021 en la
+            que los dos años de garantía legal de los productos pasan a ser tres años de garantía legal</h5>
+          <p>La garantía de los productos y la garantía de la instalación correspondiente al equipo comprado, ya sea,
+            aire acondicionado, energía solar, termos, etc... es un asunto que preocupa bastante a nuestros clientes. Es
+            por ello que hemos dedicado esta sección para poder explicarlo debidamente.</p>
+          <p>Cuando se instala un equipo de aire acondicionado u otro de nuestros productos hay que separar la garantía
+            del equipo y la garantía correspondiente a la instalación realizada por nuestro equipo. La primera garantía
+            siempre repercute al fabricante y cubre cualquier avería del producto debido a cualquier problema derivado
+            de un fallo o defecto de fábrica, en este caso, nuestro departamento de postventa gestionará y dará aviso al
+            S.A.T. de la marca en cuestión la incidencia mediante el envío del parte determinado especificando los datos
+            de nuestro cliente y el fallo detectado en el equipo. Este servicio lo ofrece nuestra empresa Conforzone
+            Eficiencias durante los tres años de Garantía oficial del fabricante llevando también en este caso el
+            seguimiento de la intervención.</p>
+          <p>Algunas marcas de aire acondicionado y de energía solar ofrecen más años de garantía adicional, como por
+            ejemplo, la marca LG (10 años de Garantía en compresor), CARRIER (5 años de garantía en compresor) , JOHNSON
+            (5 años de Garantía en compresor), etc...</p>
+          <p>Por otro lado, está la garantía de la instalación ejecutada por nuestro equipo (2 años desde la fecha de la
+            instalación), siendo esta responsabilidad de nuestra empresa autorizada Conforzone Eficiencias. El documento
+            que acredita nuestra garantía es la factura de compra, en la aparece la descripción detallada del servicio
+            realizado.</p>
+          <p>Los clientes que compran el equipo de aire acondicionado sin instalación, tienen que tener siempre presente
+            que dicha instalación tiene que realizarla una empresa instaladora autorizada, en caso contrario, perdería
+            la garantía del fabricante.</p>
+          <p>Es por ello, por lo que tenemos que resaltar también en este apartado que los equipos de aire acondicionado
+            y su instalación correspondiente debe cumplir con la legislación vigente y por la normativa específica sobre
+            estos productos según RD 1027/2007 por el que se aprueba el Reglamento de Instalaciones Térmicas en los
+            Edificios (RITE) y por el RD 795/2010 por el que se regula la comercialización y manipulación de los gases
+            fluorados y equipos basados en los mismos, así como la certificación de los profesionales que los utilizan.
+          </p>
+          <p class="fw-bold">Todos los productos comercializados por Conforzone Eficiencias disponen de la garantía del
+            fabricante así como de la garantía de nuestras instalaciones realizadas.</p>
+        </div>
+      </div>
+    </div>
+    } @else {
+    <div>
+      <h2 class="fw-medium">El servicio que busca no se encuentra disponible en este momento</h2>
+    </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="contact p-md-5 p-3">
+    <div class="container border border-dark rounded shadow">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="fw-bold py-4">Dirección</h2>
+                <div class="d-flex align-items-center">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2046.6408473538902!2d-5.835868314074763!3d37.33800905715753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1264c77e3723d5%3A0xfc19d5a3473d56e2!2sC.%20Asturias%2C%2010%2C%2041500%20Alcal%C3%A1%20de%20Guada%C3%ADra%2C%20Sevilla!5e1!3m2!1ses!2ses!4v1743682153094!5m2!1ses!2ses"
+                    class="w-100 mb-5" height="500" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2 class="fw-bold py-md-4 pb-2">Contáctanos</h2>
+                <div>
+                    <p><i class="fa-solid fa-clock"></i> <strong> Horario:</strong> De L-V de <strong>8:00h-20:00h</strong> y Sábado de <strong>9:00h-14:00h</strong></p>
+                </div>
+                <div class="fw-medium">
+                    <p><i class="fa-solid fa-location-dot"></i> <strong> Dirección</strong>: Calle Asturias 10 15 Alcalá de Guadaira 41500</p>
+                    <p><i class="fa-solid fa-phone"></i> <strong> Llámanos</strong>: (+34) 674 86 78 24</p>
+                    <p><i class="fa-solid fa-envelope"></i> <strong> Email</strong>: <a class="link-with-underline" href="https://mail.google.com/mail/?view=cm&fs=1&to=conforzoneeficiencias@gmail.com&su=Contacto&body=Has%20contactado%20con%20Conforzone%20Eficiencias%20y%20estamos%20para%20atenderte%20en%20lo%20que%20necesites.%20Muchas%20gracias" target="_blank">conforzoneeficiencias{{'@'}}gmail.com</a></p>
+                </div>
+                <div>
+                    <form [formGroup]="formContactEmail">
+                        <div class="mb-3">
+                            <label class="form-label">Asunto</label>
+                            <select class="form-select" name="" formControlName="subject" id="">
+                                <option class="custom-input" value="" selected disabled>Selecciona un asunto</option>
+                                @for (subject of subjects; track $index) {
+                                    <option value="{{subject}}">{{obtainSubjectValue(subject)}}</option>
+                                }
+                            </select>
+                            @if (noValid("subject")) {
+                                <div class="pt-2">
+                                    <p class="text-danger">Seleccione un asunto</p>
+                                </div>
+                            }
+                          </div>
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label">Correo electrónico</label>
+                          <input type="email" class="form-control custom-input" formControlName="fromEmail" placeholder="tucorreo@gmail.com">
+                          @if (noValid("fromEmail")) {
+                              <div class="pt-2">
+                                  <p class="text-danger">{{emailError}}</p>
+                              </div>
+                          }
+                        </div>
+                        <div class="mb-3">
+                          <label class="form-label">Mensaje</label>
+                          <textarea class="form-control custom-input" formControlName="body" placeholder="¿Cómo podemos ayudarte?"></textarea>
+                          @if (noValid("body")) {
+                              <div class="pt-2">
+                                <p class="text-danger">Escriba un mensaje</p>
+                             </div>
+                          }
+                        </div>
+                        <div class="mb-3 form-check d-flex align-items-center gap-3">
+                          <input type="checkbox" class="form-check-input" formControlName="inputCheck" >
+                          <label class="form-check-label">Haciendo Click sobre <strong>"Enviar"</strong> estas confirmando que has leído y aceptado las <a class="link-with-underline text-primary" routerLink="/politica-de-privacidad">Condiciones Generales de Contratación</a> y la <a class="text-primary link-with-underline" routerLink="/politica-de-privacidad">Política de Privacidad</a> de nuestra web propiedad de Conforzone Eficiencias</label>
+                        </div>
+                        @if (noValid("inputCheck")) {
+                        <div>
+                            <p class="text-danger">Debes aceptar los términos para continuar</p>
+                        </div>
+                        }
+                        <div class="pb-3 d-flex justify-content-center">
+                            <button class="btn btn-primary w-100" [ngClass]="!formContactEmail.value.inputCheck ? 'disabled': 'no-disabled' " (click)="sendEmail()">Enviar</button>
+                        </div>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+.contact{
+    margin-top: 130px !important;
+}
+
+.w-responsive {
+    width: 100%;
+  }
+  @media (min-width: 768px) {
+    /* https://getbootstrap.com/docs/5.3/layout/breakpoints/ */
+    /* sm=576, md=768, lg=992, xl=1200, xxl=1400 */
+    .w-responsive {
+      width: 50%;
+    }
+  }
+
+  .custom-input::placeholder {
+    color: gray;
+    font-style: italic;
+    font-size: 14px;
+    opacity: 1; /* por defecto en algunos navegadores es 0.5 */
+  }
+
+.disabled {
+  transition: opacity .25s ease-in-out;
+}  
+
+.no-disabled {
+  transition: opacity .10s ease-in;
+}
+
+.link-with-underline:hover {
+  color: rgb(10, 9, 24) !important;
+}

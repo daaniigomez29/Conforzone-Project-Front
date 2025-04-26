@@ -1,0 +1,38 @@
+@if (specificServicesArray.length > 0) {
+    <div>
+        <div class="row gap-3 d-flex justify-content-center py-3">
+                
+            
+            @for (specificService of specificServicesArray; track $index) {
+            <div class="col col-md-2 col-12 bg-white rounded shadow pointer px-0 py-md-2" style="position: relative; z-index:1">
+                <a routerLink='{{linkSlug}}/{{specificService.id}}'>
+                    <div class="hover-img d-flex justify-content-center">
+                        <img src="../../../../assets/instalacion-split-pared.jpg" class="img-fluid px-2" alt="">
+                    </div>
+                    <div class="w-100 d-flex flex-column justify-content-center align-items-center">
+                        <h6 class="py-3 border w-100 d-flex justify-content-center hover-text text-center">
+                            {{specificService.name}}</h6>
+                        <p class="fw-bold mt-2">{{specificService.firstPrice | number : '1.2-2'}}€</p>
+                    </div>
+                    @if (!specificService.available) {
+                        <div class="alert2 alert-danger d-flex justify-content-center align-items-center text-center gap-3 m-2 p-1" style="position: absolute; top: 0; left: 0; z-index: 1;">
+                        No disponible
+                        </div>
+                    }
+                </a>
+            </div>
+            }
+        </div>
+        <div class="row py-3">
+            <div class="col-12 px-0">
+                <div class="bg-white rounded border d-flex align-items-center px-3">
+                    <p class="mt-3 text-dark fw-medium">Mostrando 1 - {{specificServicesArray.length}} artículo (s)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+} @else {
+    <div>
+        <h2 class="fw-medium py-3">Los servicios no se encuentran disponibles en este momento.</h2>
+    </div>
+}

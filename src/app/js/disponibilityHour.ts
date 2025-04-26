@@ -9,7 +9,7 @@ export function availableContact(className:string, classNameDelete:string) {
       classSelected?.classList.remove(classNameDelete)
       return true;
     } else {
-      classSelected?.classList.remove(classNameDelete)
+      classSelected?.classList.toggle(classNameDelete)
       return false
     }
   }

@@ -4,7 +4,7 @@
                 
             
             @for (specificService of specificServicesArray; track $index) {
-            <div class="col col-md-2 col-12 bg-white rounded shadow pointer px-0 py-md-2" style="position: relative; z-index:1">
+            <div class="col col-md-2 col-12 bg-white rounded shadow pointer px-0 py-md-2 service-card">
                 <a routerLink='{{linkSlug}}/{{specificService.id}}'>
                     <div class="hover-img d-flex justify-content-center">
                         <img src="../../../../assets/instalacion-split-pared.jpg" class="img-fluid px-2" alt="">
@@ -15,7 +15,7 @@
                         <p class="fw-bold mt-2">{{specificService.firstPrice | number : '1.2-2'}}€</p>
                     </div>
                     @if (!specificService.available) {
-                        <div class="alert2 alert-danger d-flex justify-content-center align-items-center text-center gap-3 m-2 p-1" style="position: absolute; top: 0; left: 0; z-index: 1;">
+                        <div class="alert2 alert-danger d-flex justify-content-center align-items-center text-center gap-3 m-2 p-1 not-available-tag">
                         No disponible
                         </div>
                     }

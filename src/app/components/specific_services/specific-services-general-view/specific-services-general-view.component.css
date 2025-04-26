@@ -30,6 +30,18 @@
       }
 }
 
+@media (min-width: 1000px) {
+  .service-card {
+    position: relative;
+  }
+
+  .not-available-tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
 .alert2 {
   padding: 15px;
   margin-bottom: 20px;

@@ -29,3 +29,20 @@
         transform: scale(1.05);
       }
 }
+
+.alert2 {
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.alert-danger .alert-heading {
+  font-weight: bold;
+}

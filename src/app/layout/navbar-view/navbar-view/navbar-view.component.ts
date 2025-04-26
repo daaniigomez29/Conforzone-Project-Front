@@ -4,11 +4,12 @@ import { AuthUserService } from '../../../services/auth-user.service';
 import { NgClass, NgOptimizedImage } from '@angular/common'
 import { FooterComponent } from '../../../components/footer/footer/footer.component';
 import {availableContact} from '../../../js/disponibilityHour'
+import { PopoverService } from '../../../services/popover.service';
 
 @Component({
   selector: 'app-navbar-view',
   standalone: true,
-  imports: [RouterModule, FooterComponent, NgClass],
+  imports: [RouterModule, FooterComponent],
   templateUrl: './navbar-view.component.html',
   styleUrl: './navbar-view.component.css'
 })
@@ -18,7 +19,7 @@ export class NavbarViewComponent {
 
   availableContactFlag:boolean = true
 
-  constructor(public authService: AuthUserService, public router: Router) { }
+  constructor(public authService: AuthUserService, public router: Router, public popoverService:PopoverService) { }
 
   ngOnInit() {
     let navbar = document.querySelector(".navbar");
@@ -35,6 +36,10 @@ export class NavbarViewComponent {
       }
     });
     this.availableContactFlag = availableContact("whatsapp-icon", "disabled")
+  }
+
+  ngAfterViewInit() {
+    this.popoverService.initPopovers()
   }
 
   isScrolled = false;

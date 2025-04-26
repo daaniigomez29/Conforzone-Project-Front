@@ -1,10 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
-  const popoverList = [...popoverTriggerList].map(
-      popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl)
-  );
-});
-
 window.addEventListener("scroll", function() {
   let navbar = document.querySelector(".navbar");
   let navbarMobile = this.document.querySelector(".navbar-mobile");

@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
+import { AfterViewChecked, Component, ElementRef, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SpecificServiceService } from '../../../services/specific-service.service';
 import { SpecificService } from '../../../interfaces/SpecificService';
 import { INSTALLATIONS } from '../../../js/installations'
@@ -14,7 +14,11 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './specific-service-detail.component.html',
   styleUrl: './specific-service-detail.component.css'
 })
-export class SpecificServiceDetailComponent {
+export class SpecificServiceDetailComponent implements AfterViewChecked {
+
+  @ViewChild('whatsappLink') whatsappLink?: ElementRef<HTMLAnchorElement>;
+
+  private hasChecked = false; // Evitar bucles infinitos
 
   isOfferPage: boolean = false
 
@@ -51,6 +55,13 @@ export class SpecificServiceDetailComponent {
 
   }
 
+  ngAfterViewChecked() {
+    if (this.whatsappLink && !this.hasChecked) {
+      this.hasChecked = true; // Solo la primera vez
+      availableContact('link-with-underline-whatsapp', 'disabled')
+    }
+  }
+
   ngOnInit() {
     let id = this.route.snapshot.params['id']
     this.specificServiceId = id ? id : 0
@@ -63,8 +74,6 @@ export class SpecificServiceDetailComponent {
     } else {
       this.obtainDataFromOfferSpecificService(id)
     }
-
-    availableContact("link-with-underline-whatsapp", "disabled")
   }
 
   findSlug() {
@@ -147,10 +156,10 @@ export class SpecificServiceDetailComponent {
 
   get whatsappMessage() {
     const base = `https://web.whatsapp.com/send?l=es&phone=34674778285&text=`
-    let messageWhatsapp = `Buenas! Me gustaría solicitar la ${this.specificService.name}, necesito ${this.quantity} instalación/es, soy de ${this.installationPlace}.`
+    let messageWhatsapp = `Buenas! Me gustaría solicitar la ${this.specificService.name}. necesitaría ${this.quantity} instalación/es. La instalación sería en ${this.installationPlace}.`
 
     if (this.quantityAdditionalMeter > 0) {
-      messageWhatsapp = `Buenas! Me gustaría solicitar la instalación ${this.specificService.name}, necesito ${this.quantity} instalación/es, necesitaría además ${this.quantityAdditionalMeter} metro/s adicional/es. Soy de ${this.installationPlace}.`
+      messageWhatsapp = `¡Hola! Me gustaría solicitar la ${this.specificService.name}. Necesitaría ${this.quantity} instalación/es y ${this.quantityAdditionalMeter} metro/s adicional/es. La instalación sería en ${this.installationPlace}.`
     }
 
     return base + encodeURIComponent(messageWhatsapp)

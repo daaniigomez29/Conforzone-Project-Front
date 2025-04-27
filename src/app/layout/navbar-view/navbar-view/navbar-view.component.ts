@@ -1,9 +1,7 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { AuthUserService } from '../../../services/auth-user.service';
-import { NgClass, NgOptimizedImage } from '@angular/common'
 import { FooterComponent } from '../../../components/footer/footer/footer.component';
-import {availableContact} from '../../../js/disponibilityHour'
 import { PopoverService } from '../../../services/popover.service';
 
 @Component({
@@ -16,8 +14,6 @@ import { PopoverService } from '../../../services/popover.service';
 export class NavbarViewComponent {
 
   @ViewChild('triggerSection') triggerSection!: ElementRef;
-
-  availableContactFlag:boolean = true
 
   constructor(public authService: AuthUserService, public router: Router, public popoverService:PopoverService) { }
 
@@ -35,7 +31,6 @@ export class NavbarViewComponent {
 
       }
     });
-    this.availableContactFlag = availableContact("whatsapp-icon", "disabled")
   }
 
   ngAfterViewInit() {

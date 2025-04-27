@@ -24,6 +24,12 @@ export class LinksMobilePcService {
   }
 
   getEmailInfoLink(){
-    
+    let link = `https://mail.google.com/mail/?view=cm&fs=1&to=conforzoneeficiencias@gmail.com&su=Contacto&body=Has%20contactado%20con%20Conforzone%20Eficiencias%20y%20estamos%20para%20atenderte%20en%20lo%20que%20necesites.%20Muchas%20gracias`;
+  
+    if(this.isInMobile()) {
+      link = `mailto:conforzoneeficiencias@gmail.com?subject=Contacto&body=Has contactado con Conforzone Eficiencias y estamos para atenderte en lo que necesites. Muchas gracias`
+    }
+
+    return link;
   }
 }

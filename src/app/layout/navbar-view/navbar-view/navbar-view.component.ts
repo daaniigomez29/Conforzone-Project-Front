@@ -38,6 +38,7 @@ export class NavbarViewComponent {
     });
 
     this.whatsappInfoLink = this.linksMobilePcService.getWhatsappInfoLink()
+    this.emailInfoLink = this.linksMobilePcService.getEmailInfoLink()
   }
 
   ngAfterViewInit() {

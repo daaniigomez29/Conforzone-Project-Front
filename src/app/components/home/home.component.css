@@ -3,11 +3,9 @@
 }
 
 .hero-section {
-    background: linear-gradient(45deg, #057292, #023f51); /* Degradado entre los colores */
-    min-height: 100vh;
-    background-image: url('../../../assets/background_home.webp');
-    background-position: center;
-    background-size: cover;
+    min-height: 100vh; /* Ocupa toda la pantalla */
+    background: linear-gradient(45deg, #057292, #023f51), 
+                url('../../../assets/background_home.webp') center/cover no-repeat;
 }
 
 .hero-title{

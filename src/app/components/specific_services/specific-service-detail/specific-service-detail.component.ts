@@ -153,7 +153,7 @@ export class SpecificServiceDetailComponent {
   }
 
   get whatsappMessage() {
-    const base = `https://web.whatsapp.com/send?l=es&phone=34674867824&text=`
+    const base = this.linksMobilePcService.getWhatsappRequestBudgetLink()
     let messageWhatsapp = `¡Hola! Me gustaría solicitar la ${this.specificService.name}. Necesitaría ${this.quantity} instalación/es. La instalación sería en ${this.installationPlace}.`
 
     if (this.quantityAdditionalMeter > 0) {

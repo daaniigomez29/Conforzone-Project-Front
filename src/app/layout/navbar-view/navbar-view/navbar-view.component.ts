@@ -3,6 +3,7 @@ import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { AuthUserService } from '../../../services/auth-user.service';
 import { FooterComponent } from '../../../components/footer/footer/footer.component';
 import { PopoverService } from '../../../services/popover.service';
+import { LinksMobilePcService } from '../../../services/links-mobile-pc.service';
 
 @Component({
   selector: 'app-navbar-view',
@@ -15,7 +16,11 @@ export class NavbarViewComponent {
 
   @ViewChild('triggerSection') triggerSection!: ElementRef;
 
-  constructor(public authService: AuthUserService, public router: Router, public popoverService:PopoverService) { }
+  whatsappContactLink:string = '';
+
+  emailContactLink:string = '';
+
+  constructor(public authService: AuthUserService, public router: Router, public popoverService:PopoverService, private linksMobilePcService:LinksMobilePcService) { }
 
   ngOnInit() {
     let navbar = document.querySelector(".navbar");
@@ -31,6 +36,9 @@ export class NavbarViewComponent {
 
       }
     });
+
+    this.whatsappContactLink = this.linksMobilePcService.getWhatsappContactLink()
+    this.emailContactLink = this.linksMobilePcService.getEmailContactLink()
   }
 
   ngAfterViewInit() {

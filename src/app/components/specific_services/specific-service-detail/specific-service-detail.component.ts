@@ -5,6 +5,8 @@ import { SpecificService } from '../../../interfaces/SpecificService';
 import { INSTALLATIONS } from '../../../js/installations'
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { LoaderService } from '../../../services/loader.service';
+import { LinksMobilePcService } from '../../../services/links-mobile-pc.service';
 
 @Component({
   selector: 'app-specific-service-detail',
@@ -14,6 +16,10 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './specific-service-detail.component.css'
 })
 export class SpecificServiceDetailComponent {
+
+  emailContactLink:string = ''
+
+  whatsappContactLink:string = ''
 
   isOfferPage: boolean = false
 
@@ -46,7 +52,7 @@ export class SpecificServiceDetailComponent {
   installationPlace = ''
   unidadesInterior = 1;
 
-  public constructor(public route: ActivatedRoute, private router: Router, public specificServiceService: SpecificServiceService) {
+  public constructor(public route: ActivatedRoute, private router: Router, public specificServiceService: SpecificServiceService, public loaderService:LoaderService, private linksMobilePcService:LinksMobilePcService) {
 
   }
 
@@ -63,6 +69,9 @@ export class SpecificServiceDetailComponent {
     } else {
       this.obtainDataFromOfferSpecificService(id)
     }
+
+    this.emailContactLink = this.linksMobilePcService.getEmailContactLink()
+    this.whatsappContactLink = this.linksMobilePcService.getWhatsappContactLink();
   }
 
   findSlug() {
@@ -145,7 +154,7 @@ export class SpecificServiceDetailComponent {
 
   get whatsappMessage() {
     const base = `https://web.whatsapp.com/send?l=es&phone=34674867824&text=`
-    let messageWhatsapp = `Buenas! Me gustaría solicitar la ${this.specificService.name}. necesitaría ${this.quantity} instalación/es. La instalación sería en ${this.installationPlace}.`
+    let messageWhatsapp = `¡Hola! Me gustaría solicitar la ${this.specificService.name}. Necesitaría ${this.quantity} instalación/es. La instalación sería en ${this.installationPlace}.`
 
     if (this.quantityAdditionalMeter > 0) {
       messageWhatsapp = `¡Hola! Me gustaría solicitar la ${this.specificService.name}. Necesitaría ${this.quantity} instalación/es y ${this.quantityAdditionalMeter} metro/s adicional/es. La instalación sería en ${this.installationPlace}.`
@@ -155,11 +164,21 @@ export class SpecificServiceDetailComponent {
   }
 
   get emailMessage() {
-    const base = `https://mail.google.com/mail/?view=cm&fs=1&to=conforzoneeficiencias@gmail.com&su=Solicitud%20de%20presupuesto&body=`
-    let messageEmail = `Buenas!%20Me%20gustaría%20solicitar%20la%20${this.specificService.name},%20necesito%20${this.quantity}%20instalación/es.%20Soy%20de%20${this.installationPlace}.`
+    const base = this.linksMobilePcService.getEmailRequestBudgetLink()
+    let messageEmail
 
-    if (this.quantityAdditionalMeter > 0) {
-      messageEmail = `Buenas!%20Me%20gustaría%20solicitar%20la%20${this.specificService.name},%20necesito%20${this.quantity}%20instalación/es,%20necesitaría%20además%20${this.quantityAdditionalMeter}%20metro/s%20adicional/es.%20Soy%20de%20${this.installationPlace}.`
+    if(!base.includes('mailto')){
+        messageEmail = `Hola!%20Me%20gustaría%20solicitar%20la%20${this.specificService.name}.%20Necesitaría%20${this.quantity}%20instalación/es.%20La%20instalación%20sería%20en%20${this.installationPlace}.`
+  
+      if (this.quantityAdditionalMeter > 0) {
+        messageEmail = `Hola!%20Me%20gustaría%20solicitar%20la%20${this.specificService.name}.%20Necesitaría%20${this.quantity}%20instalación/es%20y%20${this.quantityAdditionalMeter}%20metro/s%20adicional/es.%20La%20instalación%20sería%20en%20${this.installationPlace}.`
+      }
+    } else {
+      messageEmail = `Hola! Me gustaría solicitar la ${this.specificService.name}. Necesitaría ${this.quantity} instalación/es. La instalación sería en ${this.installationPlace}.`
+
+      if(this.quantityAdditionalMeter > 0) {
+        messageEmail = `Hola! Me gustaría solicitar la ${this.specificService.name}. Necesitaría ${this.quantity} instalación/es y ${this.quantityAdditionalMeter}. La instalación sería en ${this.installationPlace}.`
+      }
     }
 
     return base + messageEmail

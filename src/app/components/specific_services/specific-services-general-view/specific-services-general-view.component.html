@@ -1,3 +1,4 @@
+@if (!loaderService.getLoading()) {
 @if (specificServicesArray.length > 0) {
     <div>
         <div class="row gap-3 d-flex justify-content-center py-3">
@@ -35,4 +36,5 @@
     <div>
         <h2 class="fw-medium py-3">Los servicios no se encuentran disponibles en este momento.</h2>
     </div>
+}
 }

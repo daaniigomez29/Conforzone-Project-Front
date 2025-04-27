@@ -4,6 +4,7 @@ import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
 import { SpecificServiceService } from '../../../services/specific-service.service';
 import { CommonModule } from '@angular/common';
 import { INSTALLATIONS } from '../../../js/installations';
+import { LoaderService } from '../../../services/loader.service';
 
 @Component({
   selector: 'app-specific-services-general-view',
@@ -21,20 +22,10 @@ export class SpecificServicesGeneralViewComponent {
 
   @Input() linkSlug:string = ""
 
-  constructor(private route: ActivatedRoute, public specificServiceService: SpecificServiceService) {
+  constructor(private route: ActivatedRoute, public specificServiceService: SpecificServiceService, public loaderService:LoaderService) {
 
   }
 
   ngOnInit() {
-    /*
-    this.specificServiceService.getAllSpecificServicesBySlug(this.slug).subscribe({
-      next: data => {
-        this.specificServicesArray = data
-      },
-      error: err => {
-
-      }
-    })
-      */
   }
 }

@@ -7,6 +7,7 @@ import { EmailModel } from '../../../interfaces/EmailModel';
 import { ValidatorService } from '../../../validators/validator.service';
 import Swal from 'sweetalert2';
 import { RouterModule } from '@angular/router';
+import { LinksMobilePcService } from '../../../services/links-mobile-pc.service';
 
 @Component({
   selector: 'app-contact-page',
@@ -16,6 +17,8 @@ import { RouterModule } from '@angular/router';
   styleUrl: './contact-page.component.css'
 })
 export class ContactPageComponent {
+
+  emailContactLink:string = ''
 
   subjects = Object.keys(SubjectEnums)
 
@@ -29,8 +32,11 @@ export class ContactPageComponent {
 
   formSubmitted:boolean = false;
 
-  public constructor(private emailService:EmailService, private fb:FormBuilder, private validatorService:ValidatorService){}
+  public constructor(private emailService:EmailService, private fb:FormBuilder, private validatorService:ValidatorService, private linksMobilePcService:LinksMobilePcService){}
 
+  ngOnInit() {
+    this.emailContactLink = this.linksMobilePcService.getEmailContactLink()
+  }
 
   formContactEmail: FormGroup = this.fb.group({
     fromEmail: ["", [Validators.required, Validators.pattern(/^[A-Za-z0-9+_.-]+@(.+)$/), this.validatorService.patternEmail]],

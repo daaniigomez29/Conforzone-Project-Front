@@ -1,10 +1,9 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { AuthUserService } from '../../../services/auth-user.service';
-import { NgClass, NgOptimizedImage } from '@angular/common'
 import { FooterComponent } from '../../../components/footer/footer/footer.component';
-import {availableContact} from '../../../js/disponibilityHour'
 import { PopoverService } from '../../../services/popover.service';
+import { LinksMobilePcService } from '../../../services/links-mobile-pc.service';
 
 @Component({
   selector: 'app-navbar-view',
@@ -17,9 +16,11 @@ export class NavbarViewComponent {
 
   @ViewChild('triggerSection') triggerSection!: ElementRef;
 
-  availableContactFlag:boolean = true
+  whatsappContactLink:string = '';
 
-  constructor(public authService: AuthUserService, public router: Router, public popoverService:PopoverService) { }
+  emailContactLink:string = '';
+
+  constructor(public authService: AuthUserService, public router: Router, public popoverService:PopoverService, private linksMobilePcService:LinksMobilePcService) { }
 
   ngOnInit() {
     let navbar = document.querySelector(".navbar");
@@ -35,7 +36,9 @@ export class NavbarViewComponent {
 
       }
     });
-    this.availableContactFlag = availableContact("whatsapp-icon", "disabled")
+
+    this.whatsappContactLink = this.linksMobilePcService.getWhatsappContactLink()
+    this.emailContactLink = this.linksMobilePcService.getEmailContactLink()
   }
 
   ngAfterViewInit() {

@@ -5,7 +5,7 @@
 .hero-section {
     min-height: 100vh; /* Ocupa toda la pantalla */
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url('../../../assets/instalar-ac.jpg') center/cover no-repeat;
+                url('../../../assets/background_home.webp') center/cover no-repeat;
 }
 
 .hero-title{

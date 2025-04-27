@@ -5,6 +5,7 @@ import { SpecificService } from '../../../interfaces/SpecificService';
 import { INSTALLATIONS } from '../../../js/installations'
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { LoaderService } from '../../../services/loader.service';
 
 @Component({
   selector: 'app-specific-service-detail',
@@ -46,7 +47,7 @@ export class SpecificServiceDetailComponent {
   installationPlace = ''
   unidadesInterior = 1;
 
-  public constructor(public route: ActivatedRoute, private router: Router, public specificServiceService: SpecificServiceService) {
+  public constructor(public route: ActivatedRoute, private router: Router, public specificServiceService: SpecificServiceService, public loaderService:LoaderService) {
 
   }
 

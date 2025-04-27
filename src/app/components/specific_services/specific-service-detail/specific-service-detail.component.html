@@ -1,6 +1,7 @@
 <div class="specific-service-detail">
-  <div class="container p-5">
-    @if (this.specificService.name) {
+  <div class="container p-4 p-md-5">
+    @if (!loaderService.getLoading()) {
+      @if (this.specificService.name) {
     <div class="row border rounded bg-white text-center text-md-start py-2">
       <div class="col-md-4 d-flex justify-content-center align-items-center">
         <img class="img-service" src="../../../../assets/instalacion-split-pared.jpg" alt="">
@@ -220,6 +221,7 @@
     <div>
       <h2 class="fw-medium">El servicio que busca no se encuentra disponible en este momento</h2>
     </div>
+    }
     }
   </div>
 </div>

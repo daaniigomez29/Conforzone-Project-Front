@@ -6,6 +6,7 @@ import { INSTALLATIONS } from '../../../js/installations'
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoaderService } from '../../../services/loader.service';
+import { LinksMobilePcService } from '../../../services/links-mobile-pc.service';
 
 @Component({
   selector: 'app-specific-service-detail',
@@ -15,6 +16,10 @@ import { LoaderService } from '../../../services/loader.service';
   styleUrl: './specific-service-detail.component.css'
 })
 export class SpecificServiceDetailComponent {
+
+  emailContactLink:string = ''
+
+  whatsappContactLink:string = ''
 
   isOfferPage: boolean = false
 
@@ -47,7 +52,7 @@ export class SpecificServiceDetailComponent {
   installationPlace = ''
   unidadesInterior = 1;
 
-  public constructor(public route: ActivatedRoute, private router: Router, public specificServiceService: SpecificServiceService, public loaderService:LoaderService) {
+  public constructor(public route: ActivatedRoute, private router: Router, public specificServiceService: SpecificServiceService, public loaderService:LoaderService, private linksMobilePcService:LinksMobilePcService) {
 
   }
 
@@ -64,6 +69,9 @@ export class SpecificServiceDetailComponent {
     } else {
       this.obtainDataFromOfferSpecificService(id)
     }
+
+    this.emailContactLink = this.linksMobilePcService.getEmailContactLink()
+    this.whatsappContactLink = this.linksMobilePcService.getWhatsappContactLink();
   }
 
   findSlug() {

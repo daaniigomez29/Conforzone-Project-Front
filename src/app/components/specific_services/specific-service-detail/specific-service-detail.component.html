@@ -57,11 +57,11 @@
           <i class="fa-solid fa-circle-exclamation"></i> Todos los precios en la página son una <strong>aproximación del
             precio final</strong>, para confirmación de este consultar precio vía <a
             class="alert-link link-with-underline"
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=conforzoneeficiencias@gmail.com&su=Contacto&body=Has%20contactado%20con%20Conforzone%20Eficiencias%20y%20estamos%20para%20atenderte%20en%20lo%20que%20necesites.%20Muchas%20gracias"
+            [href]="emailContactLink"
             target="_blank">Email</a>
           o
-          <a #whatsappLink class="alert-link link-with-underline-whatsapp"
-            href="https://web.whatsapp.com/send?l=es&phone=34674867824&text=Has contactado con Conforzone Eficiencias y estamos para atenderte en lo que necesites. Muchas gracias"
+          <a class="alert-link link-with-underline-whatsapp"
+            [href]="whatsappContactLink"
             target="_blank">Whatsapp</a>.
         </div>
       </div>

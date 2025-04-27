@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LinksMobilePcService } from '../../../services/links-mobile-pc.service';
 
 @Component({
   selector: 'app-footer',
@@ -8,5 +9,13 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
+
+  emailContactLink:string = ''
+
+  constructor(private linksMobilePcService:LinksMobilePcService){}
+
+  ngOnInit(){
+    this.emailContactLink = this.linksMobilePcService.getEmailContactLink()
+  }
 
 }

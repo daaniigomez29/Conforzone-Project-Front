@@ -16,9 +16,9 @@ export class NavbarViewComponent {
 
   @ViewChild('triggerSection') triggerSection!: ElementRef;
 
-  whatsappInfoLink:string = '';
+  whatsappContactLink:string = '';
 
-  emailInfoLink:string = '';
+  emailContactLink:string = '';
 
   constructor(public authService: AuthUserService, public router: Router, public popoverService:PopoverService, private linksMobilePcService:LinksMobilePcService) { }
 
@@ -37,8 +37,8 @@ export class NavbarViewComponent {
       }
     });
 
-    this.whatsappInfoLink = this.linksMobilePcService.getWhatsappInfoLink()
-    this.emailInfoLink = this.linksMobilePcService.getEmailInfoLink()
+    this.whatsappContactLink = this.linksMobilePcService.getWhatsappContactLink()
+    this.emailContactLink = this.linksMobilePcService.getEmailContactLink()
   }
 
   ngAfterViewInit() {

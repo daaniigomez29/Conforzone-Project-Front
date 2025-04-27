@@ -8,8 +8,8 @@ export class LinksMobilePcService {
   constructor() { }
 
 
-  isInMobile(){
-    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  private isInMobile(){
+    return /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   }
 
 

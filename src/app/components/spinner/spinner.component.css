@@ -13,7 +13,7 @@
     content: "";
     display: block;
     position: absolute;
-    left: 48%;
+    left: 40%;
     top: 40%;
     width: 63px;
     height: 63px;
@@ -62,4 +62,11 @@
       -moz-transform: rotate(360deg);
       transform: rotate(360deg);
     }
+  }
+
+  @media (min-width: 1000px) {
+      .cssload-speeding-wheel {
+        left: 48%;
+        top: 40%;
+      }
   }

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
 
 declare var bootstrap: any;
 

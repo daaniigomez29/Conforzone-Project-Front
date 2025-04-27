@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { INSTALLATIONS } from '../../js/installations';
@@ -15,7 +15,7 @@ export class HomeComponent {
 
   step = 1;
   installationPlace = ''
-  
+
   //Step 1
   installationType = '';
 
@@ -32,12 +32,12 @@ export class HomeComponent {
     // Aquí puedes cerrar el modal manualmente si usas ViewChild o servicios
   }
 
-  constructor(private router:Router){}
+  constructor(private router: Router) { }
 
-  ngAfterViewOnInit(){
+  ngAfterViewOnInit() {
     const modal = document.getElementById('wizardModal');
 
-    if(modal){
+    if (modal) {
       (modal as HTMLElement).addEventListener('hidden.bs.modal', () => {
         const active = document.activeElement as HTMLElement;
         active?.blur();

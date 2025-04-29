@@ -58,6 +58,21 @@
   color: white;
 }
 
+@media (max-width: 1000px) {
+  .is-home:not(.scrolled) .navbar-toggler {
+    background-color: transparent;
+    border-color: white;
+  }
+
+  .is-home:not(.scrolled) .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+  }
+}
+
+.navbar-toggler {
+  background-color: rgb(248, 249, 250) ;
+}
+
 .navbar-mobile {
   position: fixed;
   top: 0;
@@ -73,7 +88,6 @@
 .scrolled {
   background: white !important; /* Al hacer scroll se vuelve sólido */
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07) !important;
-
 }
 
 .scrolled a {

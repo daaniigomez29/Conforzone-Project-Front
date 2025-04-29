@@ -11,7 +11,6 @@ import { ContactPageComponent } from './components/contact/contact-page/contact-
 import { SpecificServiceComponent } from './components/specific_services/specific-service/specific-service.component';
 import { SpecificServiceDetailComponent } from './components/specific_services/specific-service-detail/specific-service-detail.component';
 import { LoginComponent } from './components/users/login/login.component';
-import { PageNotFoundComponent } from './components/page_not_found/page-not-found/page-not-found.component';
 import { PagePrivacityPolicyComponent } from './components/page_policy/page-privacity-policy/page-privacity-policy.component';
 
 export const routes: Routes = [

@@ -25,7 +25,7 @@
           }
         </div>
         }
-
+        @if (specificService.available) {
         <div class="border mb-3 rounded p-3 bg-light">
           <div class="row align-items-center text-center text-md-start">
             <div class="col-md-6 mb-3 mb-md-0">
@@ -53,6 +53,7 @@
             </div>
           </div>
         </div>
+      }
         <div class="alert alert-info py-2 fw-medium">
           <i class="fa-solid fa-circle-exclamation"></i> Todos los precios en la página son una <strong>aproximación del
             precio final</strong>, para confirmación de este consultar precio vía <a
@@ -70,11 +71,10 @@
         aria-hidden="false">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-
-            <div class="modal-header">
-              <h5 class="modal-title fw-bold text-dark" id="wizardModalLabel">Solicitar presupuesto</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-            </div>
+              <div class="modal-header">
+                <h5 class="modal-title fw-bold text-dark" id="wizardModalLabel">Solicitar presupuesto</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+              </div>
 
             <div class="modal-body">
               <!-- Paso 1 -->

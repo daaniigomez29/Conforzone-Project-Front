@@ -50,6 +50,10 @@
     .first-img {
         height: auto;
     }
+    
+    .emailFont {
+        font-size: 20px;
+    }
 }
 
 

@@ -1,5 +1,5 @@
-import { AfterViewChecked, Component, ElementRef, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { AfterViewChecked, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute, NavigationStart, Router, RouterModule } from '@angular/router';
 import { SpecificServiceService } from '../../../services/specific-service.service';
 import { SpecificService } from '../../../interfaces/SpecificService';
 import { INSTALLATIONS } from '../../../js/installations'
@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoaderService } from '../../../services/loader.service';
 import { LinksMobilePcService } from '../../../services/links-mobile-pc.service';
+import { ModalService } from '../../../services/modal.service';
 
 @Component({
   selector: 'app-specific-service-detail',
@@ -15,7 +16,9 @@ import { LinksMobilePcService } from '../../../services/links-mobile-pc.service'
   templateUrl: './specific-service-detail.component.html',
   styleUrl: './specific-service-detail.component.css'
 })
-export class SpecificServiceDetailComponent {
+export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
+
+  private routerSubscription:any
 
   emailContactLink:string = ''
 
@@ -52,7 +55,7 @@ export class SpecificServiceDetailComponent {
   installationPlace = ''
   unidadesInterior = 1;
 
-  public constructor(public route: ActivatedRoute, private router: Router, public specificServiceService: SpecificServiceService, public loaderService:LoaderService, private linksMobilePcService:LinksMobilePcService) {
+  public constructor(public route: ActivatedRoute, private router: Router, public specificServiceService: SpecificServiceService, public loaderService:LoaderService, private linksMobilePcService:LinksMobilePcService, private modalService:ModalService) {
 
   }
 
@@ -72,6 +75,18 @@ export class SpecificServiceDetailComponent {
 
     this.emailContactLink = this.linksMobilePcService.getEmailContactLink()
     this.whatsappContactLink = this.linksMobilePcService.getWhatsappContactLink();
+
+    this.routerSubscription = this.router.events.subscribe(event => {
+          if (event instanceof NavigationStart){
+            this.modalService.closeModal('wizardModal')
+          }
+        })
+  }
+
+  ngOnDestroy(): void {
+    if (this.routerSubscription && !this.routerSubscription.unsubscribe()) {
+      this.routerSubscription.unsubscribe()
+    }
   }
 
   findSlug() {
@@ -153,7 +168,7 @@ export class SpecificServiceDetailComponent {
   }
 
   get whatsappMessage() {
-    const base = `https://web.whatsapp.com/send?l=es&phone=34674867824&text=`
+    const base = this.linksMobilePcService.getWhatsappRequestBudgetLink()
     let messageWhatsapp = `¡Hola! Me gustaría solicitar la ${this.specificService.name}. Necesitaría ${this.quantity} instalación/es. La instalación sería en ${this.installationPlace}.`
 
     if (this.quantityAdditionalMeter > 0) {

@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, Renderer2 } from '@angular/core';
+import { Component, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterModule } from '@angular/router';
+import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { INSTALLATIONS } from '../../js/installations';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,9 @@ import { INSTALLATIONS } from '../../js/installations';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit, OnDestroy{
+
+  private routerSubscription:any
 
   step = 1;
   installationPlace = ''
@@ -32,16 +35,19 @@ export class HomeComponent {
     // Aquí puedes cerrar el modal manualmente si usas ViewChild o servicios
   }
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private modalService:ModalService) { }
 
-  ngAfterViewOnInit() {
-    const modal = document.getElementById('wizardModal');
+  ngOnInit() {
+    this.routerSubscription = this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart){
+        this.modalService.closeModal('wizardModal')
+      }
+    })
+  }
 
-    if (modal) {
-      (modal as HTMLElement).addEventListener('hidden.bs.modal', () => {
-        const active = document.activeElement as HTMLElement;
-        active?.blur();
-      });
+  ngOnDestroy() {
+    if (this.routerSubscription && !this.routerSubscription.unsubscribe()) {
+      this.routerSubscription.unsubscribe()
     }
   }
 }

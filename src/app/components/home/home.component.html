@@ -39,35 +39,138 @@
                         </div>
                       </div>
 
+                      <!-- Paso 2 -->
                       <div *ngIf="step === 2">
                         <div class="text-start pb-3">
                             <label class="text-dark">Tipo de instalación</label>
                         </div>
-                        <select class="form-select mb-3" [(ngModel)]="installationService">
+                        <select class="form-select mb-3" [(ngModel)]="installationServiceSlug">
                           <option value="" disabled>Selecciona el tipo de instalación</option>
                           @for (installation of installationsType; track $index) {
-                            <option value="{{installation.name}}">{{installation.name}}</option>
+                            <option value="{{installation.slug}}">{{installation.name}}</option>
                           }
                         </select>
                         <div class="d-flex gap-3">
                           <button class="btn btn-danger w-100" (click)="step = 1">Atrás</button>
-                          <button class="btn btn-success w-100" (click)="step = 3">Siguiente</button>
+                          <button class="btn btn-success w-100" (click)="getAllSpecificServicesBySlug()">Siguiente</button>
                         </div>
-                      </div>
-              
-                      <!-- Paso 2 -->
-                      <div *ngIf="step === 3">
-                        <label>Unidades interiores</label>
-                        <input type="number" class="form-control mb-3" [(ngModel)]="installationPlace" />
-                        <button class="btn btn-secondary w-100" (click)="step = 3">Siguiente</button>
                       </div>
               
                       <!-- Paso 3 -->
                       <div *ngIf="step === 3">
-                        <h6>Resumen:</h6>
-                        <p><strong>Tipo:</strong> {{ installationType }}</p>
-                        <button class="btn btn-success w-100" (click)="enviarPresupuesto()" >Enviar</button>
+                        <div class="text-start pb-3">
+                            <label class="text-dark">Instalación:</label>
+                        </div>
+                        <select class="form-select mb-3" [(ngModel)]="specificServiceChoosed.id">
+                          <option value="" disabled>Selecciona la instalación que desea:</option>
+                          @for (specificService of specificServicesArray; track $index) {
+                            <option value="{{specificService.id}}">{{specificService.name}}</option>
+                          }
+                        </select>
+                        <div class="d-flex gap-3">
+                          <button class="btn btn-danger w-100" (click)="step = 2">Atrás</button>
+                          <button class="btn btn-success w-100" (click)="getSpecificServiceChoosed()">Siguiente</button>
+                        </div>
                       </div>
+
+                      <!-- Paso 4 -->
+                      <div *ngIf="step === 4" class="p-4 rounded-3 bg-white shadow-lg">
+                        <h5 class="fw-bold text-center mb-3">Solicitar presupuesto</h5>
+                      
+                        <p class="text-center text-muted mb-4">
+                          {{ specificServiceChoosed.name }}
+                        </p>
+                      
+                        <div class="row align-items-center mb-3">
+                          <!-- Cantidad -->
+                          <div class="col-md-6 mb-3 mb-md-0 position-relative">
+                            <div
+                              class="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start align-items-center gap-2">
+                              <h5 class="fw-bold mb-0">Cantidad:</h5>
+                              <div class="d-flex gap-3 align-items-center">
+                                <button  class="btn btn-outline-primary px-3" (click)="decrement()"><i class="fa-solid fa-minus"></i></button>
+                                <span class="fs-5">{{quantity}}</span>
+                                <button class="btn btn-outline-primary px-3" (click)="increment()"><i class="fa-solid fa-plus"></i></button>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- Precio total -->
+                          <div class="col-md-6 text-center text-md-end">
+                            <div class="d-flex flex-column align-items-center align-items-md-end">
+                              <span class="text-muted">Precio total:</span>
+                              <span class="fs-4 fw-bold text-dark">
+                                {{ (totalPrice > this.specificServiceChoosed.firstPrice ? totalPrice :
+                                  this.specificServiceChoosed.firstPrice) | number:'1.2-2' }}€
+                              </span>
+                              <small class="text-muted fst-italic">21% IVA incluido</small>
+                            </div>
+                          </div>
+                        </div>
+                      
+                        <!-- Botones -->
+                        <div class="d-flex gap-3">
+                          <button class="btn btn-danger w-100" (click)="step = 3">
+                            <i class="bi bi-arrow-left me-1"></i> Atrás
+                          </button>
+                          <button class="btn btn-success w-100" (click)="goStep5()">
+                            Siguiente <i class="bi bi-arrow-right ms-1"></i>
+                          </button>
+                        </div>
+                      </div>
+                      
+                      <!--Paso 5-->
+                      <div *ngIf="step === 5" class="p-4 rounded-3 bg-white shadow-lg">
+                        <h5 class="fw-bold text-center mb-3">Solicitar metros adicionales</h5>
+                      
+                        <p class="text-center text-muted mb-4">
+                          ¿Necesita metros adicionales para la instalación?
+                          Cada metro adicional solo le costará <strong> {{specificServiceChoosed.pricePerMeter | number:'1.2-2'}}€ </strong>
+                        </p>
+                        <p class="text-center text-muted mb-4">Si no es necesario, puede pulsar <strong>Siguiente</strong> para continuar</p>
+                      
+                        <div class="row align-items-center mb-3">
+                          <!-- Cantidad -->
+                          <div class="col-md-6 mb-3 mb-md-0 position-relative">
+                            <div
+                              class="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start align-items-center gap-2">
+                              <h5 class="fw-bold mb-0">Cantidad de metros adicionales:</h5>
+                              <div class="d-flex gap-3 align-items-center">
+                                <button  class="btn btn-outline-primary px-3" (click)="decrementAdditionalMeter()"><i class="fa-solid fa-minus"></i></button>
+                                <span class="fs-5">{{quantityAdditionalMeter}}</span>
+                                <button class="btn btn-outline-primary px-3" (click)="incrementAdditionalMeter()"><i class="fa-solid fa-plus"></i></button>
+                              </div>
+                            </div>
+                          </div>
+                      
+                          <!-- Precio total -->
+                          <div class="col-md-6 text-center text-md-end">
+                            <div class="d-flex flex-column align-items-center align-items-md-end">
+                              <span class="text-muted">Precio total:</span>
+                              <span class="fs-4 fw-bold text-dark">
+                                {{ (totalPriceWithAdditionalMeter > this.specificServiceChoosed.firstPrice ? totalPriceWithAdditionalMeter :
+                                  this.specificServiceChoosed.firstPrice) | number:'1.2-2' }}€
+                              </span>
+                              <small class="text-muted fst-italic">21% IVA incluido</small>
+                            </div>
+                          </div>
+                        </div>
+                      
+                        <!-- Botones -->
+                        <div class="d-flex gap-3">
+                          <button class="btn btn-danger w-100" (click)="step = 4 ">
+                            <i class="bi bi-arrow-left me-1"></i> Atrás
+                          </button>
+                          <button class="btn btn-success w-100" (click)="step = 6">
+                            Siguiente <i class="bi bi-arrow-right ms-1"></i>
+                          </button>
+                        </div>
+                      </div>
+
+                      <div *ngIf="step === 6">
+
+                      </div>
+
                     </div>
               
                   </div>

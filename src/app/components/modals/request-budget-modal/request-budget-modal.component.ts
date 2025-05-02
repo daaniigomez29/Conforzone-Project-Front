@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ModalService } from '../../../services/modal.service';
 import { SpecificServiceService } from '../../../services/specific-service.service';
 import { NavigationStart, Router, RouterModule } from '@angular/router';
@@ -13,11 +13,12 @@ import { RequestBudgetServicesModalComponent } from '../request-budget-services-
   templateUrl: './request-budget-modal.component.html',
   styleUrl: './request-budget-modal.component.css'
 })
-export class RequestBudgetModalComponent implements OnInit, OnDestroy{
+export class RequestBudgetModalComponent implements OnInit, OnDestroy, AfterViewInit{
 
   private routerSubscription: any
 
   @Input() step = 1;
+  private modalElement:any
 
   installationPlace = ''
 
@@ -35,9 +36,33 @@ export class RequestBudgetModalComponent implements OnInit, OnDestroy{
     })
   }
 
+  ngAfterViewInit() {
+    this.modalElement = document.getElementById('wizardModal');
+
+    if(this.modalElement) {
+      this.modalElement.addEventListener('hidden.bs.modal', this.onModalHidden)
+    }
+  }
+
+  onModalHidden = () => {
+    this.step = 1
+  }
+
   ngOnDestroy() {
     if (this.routerSubscription && !this.routerSubscription.unsubscribe()) {
       this.routerSubscription.unsubscribe()
+    }
+
+    if(this.modalElement) {
+      this.modalElement.removeEventListener('hidden.bs.modal', this.onModalHidden)
+    }
+  }
+
+  continueStep() {
+    if(this.installationType){
+      this.step = 2
+    } else {
+      alert("selecciona")
     }
   }
 }

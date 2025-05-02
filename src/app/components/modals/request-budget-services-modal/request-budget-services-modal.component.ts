@@ -35,6 +35,8 @@ export class RequestBudgetServicesModalComponent {
       available: false,
       offer: false
     }
+
+    specificServiceChoosedId:number = -1
   
     //Step 4 (Services)
     quantity: number = 1
@@ -53,28 +55,32 @@ export class RequestBudgetServicesModalComponent {
     }
     
     getAllSpecificServicesBySlug() {
-      this.specificServicesArray = []
       this.step = 3
-      this.specificServiceService.getAllSpecificServicesBySlug(this.installationServiceSlug).subscribe({
-        next: data => {
-          this.specificServicesArray = data
-        }
-      })
+      if(this.specificServicesArray.length === 0 || this.specificServicesArray[0].slug != this.installationServiceSlug){
+        this.specificServiceService.getAllSpecificServicesBySlug(this.installationServiceSlug).subscribe({
+          next: data => {
+            this.specificServicesArray = data
+          }
+        })
+      }
     }
   
     getSpecificServiceChoosed() {
       this.step = 4
       this.quantity = 1
       this.totalPrice = 0
-      this.specificServiceService.getSpecificServiceBySlugAndId(this.installationServiceSlug, this.specificServiceChoosed.id).subscribe({
-        next: data => {
-          this.specificServiceChoosed.name = data.name;
-          this.specificServiceChoosed.firstPrice = data.firstPrice;
-          this.specificServiceChoosed.pricePerMeter = data.pricePerMeter;
-  
-          this.totalPrice = data.firstPrice
-        }
-      })
+      if(this.specificServiceChoosedId === -1 || this.specificServiceChoosedId != this.specificServiceChoosed.id){
+        this.specificServiceService.getSpecificServiceBySlugAndId(this.installationServiceSlug, this.specificServiceChoosedId).subscribe({
+          next: data => {
+            this.specificServiceChoosed.id = data.id
+            this.specificServiceChoosed.name = data.name;
+            this.specificServiceChoosed.firstPrice = data.firstPrice;
+            this.specificServiceChoosed.pricePerMeter = data.pricePerMeter;
+    
+            this.totalPrice = data.firstPrice
+          }
+        })
+      }
     }
   
     increment() {

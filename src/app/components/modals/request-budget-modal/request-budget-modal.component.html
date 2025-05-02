@@ -4,7 +4,7 @@
   
         <div class="modal-header">
           <h5 class="modal-title fw-bold text-dark" id="wizardModalLabel">Solicitar presupuesto</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+          <button type="button" class="btn-close" (click)="step = 1" data-bs-dismiss="modal" aria-label="Cerrar"></button>
         </div>
 
         <div class="modal-body">
@@ -20,7 +20,7 @@
             </select>
             <div class="d-flex gap-3">
               <button class="btn btn-danger w-100" data-bs-dismiss="modal">Cancelar</button>
-              <button class="btn btn-success w-100" (click)="step = 2">Siguiente</button>
+              <button class="btn btn-success w-100" (click)="continueStep()">Siguiente</button>
             </div>
           </div>
           @if (installationType.includes('servicios')) {

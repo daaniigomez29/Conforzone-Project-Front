@@ -47,7 +47,9 @@ export class NavbarViewComponent {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.isScrolled = window.scrollY > 50; // Cambia cuando bajas 50px
+    if (isPlatformBrowser(this.platformId)) {
+      this.isScrolled = window.scrollY > 50; // Cambia cuando bajas 50px
+    }
   }
 
   ngAfterViewInit() {

@@ -1,6 +1,4 @@
 import { ResolveFn, Routes } from '@angular/router';
-import { authGuard } from './guardians/auth.guard';
-import { adminGuard } from './guardians/admin.guard';
 import { NavbarViewComponent } from './layout/navbar-view/navbar-view/navbar-view.component';
 import { HomeComponent } from './components/home/home.component';
 import { ServicesPageComponent } from './components/services/services-page/services-page.component';

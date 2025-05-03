@@ -11,4 +11,8 @@ import { RequestBudgetModalComponent } from '../../modals/request-budget-modal/r
 })
 export class ServicesPageComponent {
     step = 0
+
+    ngOnInit(){
+      
+    }
 }

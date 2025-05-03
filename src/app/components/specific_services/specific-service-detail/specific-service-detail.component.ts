@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { LoaderService } from '../../../services/loader.service';
 import { LinksMobilePcService } from '../../../services/links-mobile-pc.service';
 import { ModalService } from '../../../services/modal.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-specific-service-detail',
@@ -57,7 +58,7 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
   whatsappRequestBudgetMessage = ''
   emailRequestBudgetMessage = ''
 
-  public constructor(public route: ActivatedRoute, private router: Router, public specificServiceService: SpecificServiceService, public loaderService:LoaderService, private linksMobilePcService:LinksMobilePcService, private modalService:ModalService) {
+  public constructor(public route: ActivatedRoute, private router: Router, public specificServiceService: SpecificServiceService, public loaderService:LoaderService, private linksMobilePcService:LinksMobilePcService, private modalService:ModalService, private title:Title) {
 
   }
 
@@ -113,6 +114,8 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
 
         this.totalPrice = data.firstPrice
         this.arrayDescription = data.description.split(".")
+
+        this.title.setTitle(this.specificService.name)
       },
       error: err => {
         console.error(err)
@@ -132,6 +135,8 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
 
         this.totalPrice = data.firstPrice
         this.arrayDescription = data.description.split(".")
+
+        this.title.setTitle(this.specificService.name)
       }
     })
   }

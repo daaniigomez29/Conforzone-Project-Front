@@ -83,7 +83,6 @@ export class RequestBudgetServicesModalComponent {
     if (this.continueStep(4, this.specificServiceChoosedId.toString())) {
       this.errorString = ""
       this.quantity = 1
-      this.totalPrice = 0
       if (this.specificServiceChoosedId === -1 || this.specificServiceChoosedId != this.specificServiceChoosed.id) {
         this.specificServiceService.getSpecificServiceBySlugAndId(this.installationServiceSlug, this.specificServiceChoosedId).subscribe({
           next: data => {

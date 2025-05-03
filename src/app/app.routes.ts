@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import { ResolveFn, Routes } from '@angular/router';
 import { authGuard } from './guardians/auth.guard';
 import { adminGuard } from './guardians/admin.guard';
 import { NavbarViewComponent } from './layout/navbar-view/navbar-view/navbar-view.component';
@@ -18,16 +18,16 @@ export const routes: Routes = [
     {path: 'login-secret655', component:LoginComponent},
     {path: '', component:NavbarViewComponent,
         children:[
-            {path: 'inicio', component:HomeComponent},
-            {path: 'sobre-nosotros', component:AboutUsPageComponent},
-            {path: 'servicios', component:ServicesPageComponent},
-            {path: 'nuestro-trabajo', component:OurJobPageComponent},
-            {path: 'ofertas', component:OffersPageComponent},
-            {path: 'contacto', component:ContactPageComponent},
+            {path: 'inicio', component:HomeComponent, title: 'Conforzone Eficiencias | Soluciones de climatización'},
+            {path: 'sobre-nosotros', component:AboutUsPageComponent, title: 'Sobre nosotros | Conforzone Eficiencias'},
+            {path: 'servicios', component:ServicesPageComponent, title: 'Servicios al mejor precio | Conforzone Eficiencias'},
+            {path: 'nuestro-trabajo', component:OurJobPageComponent, title: 'Nuestro trabajo | Conforzone Eficiencias'},
+            {path: 'ofertas', component:OffersPageComponent, title: 'Ofertas al mejor precio | Conforzone Eficiencias'},
+            {path: 'contacto', component:ContactPageComponent, title: 'Contáctanos | Conforzone Eficiencias'},
             {path: 'servicios/:slug', component: SpecificServiceComponent},
             {path: 'servicios/:slug/:id', component: SpecificServiceDetailComponent},
             {path: 'ofertas/:id', component: SpecificServiceDetailComponent},
-            {path:'politica-de-privacidad', component: PagePrivacityPolicyComponent},
+            {path:'politica-de-privacidad', component: PagePrivacityPolicyComponent, title: 'Política de privacidad | Conforzone Eficiencias'},
             {path: '**', redirectTo:'/inicio'}
         ]
     },

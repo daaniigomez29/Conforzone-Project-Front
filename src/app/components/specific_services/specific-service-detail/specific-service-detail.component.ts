@@ -137,6 +137,9 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
         this.arrayDescription = data.description.split(".")
 
         this.title.setTitle(this.specificService.name)
+      },
+      error: err => {
+        console.error(err)
       }
     })
   }

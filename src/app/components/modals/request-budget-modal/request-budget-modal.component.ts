@@ -1,26 +1,29 @@
-import { AfterViewInit, Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ModalService } from '../../../services/modal.service';
 import { SpecificServiceService } from '../../../services/specific-service.service';
 import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RequestBudgetServicesModalComponent } from '../request-budget-services-modal/request-budget-services-modal.component';
+import { RequestBudgetOffersModalComponent } from '../request-budget-offers-modal/request-budget-offers-modal.component';
 
 @Component({
   selector: 'app-request-budget-modal',
   standalone: true,
-  imports: [RouterModule, FormsModule, CommonModule, RequestBudgetServicesModalComponent],
+  imports: [RouterModule, FormsModule, CommonModule, RequestBudgetServicesModalComponent, RequestBudgetOffersModalComponent],
   templateUrl: './request-budget-modal.component.html',
   styleUrl: './request-budget-modal.component.css'
 })
-export class RequestBudgetModalComponent implements OnInit, OnDestroy, AfterViewInit{
+export class RequestBudgetModalComponent implements OnInit, OnDestroy, AfterViewInit {
+
+  @ViewChild('offersComponent') offersComponent!: RequestBudgetOffersModalComponent;
 
   private routerSubscription: any
 
+  errorString: string = ''
+
   @Input() step = 1;
   private modalElement:any
-
-  installationPlace = ''
 
   //Step 1
   installationType = '';
@@ -58,11 +61,28 @@ export class RequestBudgetModalComponent implements OnInit, OnDestroy, AfterView
     }
   }
 
-  continueStep() {
-    if(this.installationType){
+  continueToStep2() {
+    if(this.continueStep(2, this.installationType)){
+      this.errorString = ""
       this.step = 2
+      if(this.installationType === 'ofertas'){
+        this.offersComponent.getAllSpecificServicesOffers()
+      }
     } else {
-      alert("selecciona")
+      this.errorString = "Por favor, seleccione un tipo de solicitud"
+    }
+  }
+
+  noValid(field: string): boolean {
+    return field === "" || Number.parseInt(field) === -1;
+  }
+
+  continueStep(stepNumber: number, field: string): boolean {
+    if (!this.noValid(field)) {
+      this.step = stepNumber;
+      return true;
+    } else {
+      return false;
     }
   }
 }

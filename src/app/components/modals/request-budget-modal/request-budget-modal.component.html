@@ -18,15 +18,20 @@
               <option value="servicios">Servicios</option>
               <option value="ofertas">Ofertas</option>
             </select>
+            <div class="text-start">
+              @if (errorString) {
+              <p class="text-danger">{{errorString}}</p>
+              }
+            </div>
             <div class="d-flex gap-3">
               <button class="btn btn-danger w-100" data-bs-dismiss="modal">Cancelar</button>
-              <button class="btn btn-success w-100" (click)="continueStep()">Siguiente</button>
+              <button class="btn btn-success w-100" (click)="continueToStep2()">Siguiente</button>
             </div>
           </div>
           @if (installationType.includes('servicios')) {
               <app-request-budget-services-modal [step]="step" (stepChange)="step = $event"></app-request-budget-services-modal>
           } @else {
-            
+            <app-request-budget-offers-modal #offersComponent [step]="step" (stepChange)="step = $event"></app-request-budget-offers-modal>
           }
         </div>
   

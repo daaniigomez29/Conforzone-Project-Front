@@ -25,7 +25,7 @@
     <label class="text-dark">Instalación:</label>
   </div>
   <select class="form-select mb-3" [(ngModel)]="specificServiceChoosedId">
-    <option value="" disabled>Selecciona la instalación que desea:</option>
+    <option value="{{-1}}" disabled>Selecciona la instalación que desea:</option>
     @for (specificService of specificServicesArray; track $index) {
     <option value="{{specificService.id}}">{{specificService.name}}</option>
     }

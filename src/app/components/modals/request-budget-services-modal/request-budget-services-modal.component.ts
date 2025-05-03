@@ -66,6 +66,7 @@ export class RequestBudgetServicesModalComponent {
 
   getAllSpecificServicesBySlug() {
     if (this.continueStep(3, this.installationServiceSlug)) {
+      this.specificServiceChoosedId = -1
       this.errorString = ""
       if (this.specificServicesArray.length === 0 || this.specificServicesArray[0].slug != this.installationServiceSlug) {
         this.specificServiceService.getAllSpecificServicesBySlug(this.installationServiceSlug).subscribe({
@@ -112,6 +113,11 @@ export class RequestBudgetServicesModalComponent {
     }
   }
 
+  goStep3() {
+    this.step = 3
+    this.totalPrice = this.specificServiceChoosed.firstPrice
+  }
+
   goStep5() {
     this.step = 5
     this.quantityAdditionalMeter = 0
@@ -150,6 +156,12 @@ export class RequestBudgetServicesModalComponent {
       return true;
     } else {
       return false;
+    }
+  }
+
+  closeModal(){
+    if(this.totalPrice > 0){
+      this.totalPrice = this.specificServiceChoosed.firstPrice
     }
   }
 }

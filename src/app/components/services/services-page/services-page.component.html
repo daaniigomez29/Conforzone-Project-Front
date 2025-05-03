@@ -23,7 +23,7 @@
             <div class="row row-cols-1 row-cols-md-4 gap-4 justify-content-center">
                 <div class="col text-center">
                     <a routerLink="/servicios/instalacion-split-pared">
-                        <img src="../../../../assets/instalacion-split-pared.jpg" class="img-fluid" alt="">
+                        <img src="../../../../assets/instalacion-split-pared-2.png" class="img-fluid" alt="">
                         <h4>Instalación Básica Split de Pared</h4>
                     </a>
                 </div>
@@ -79,6 +79,15 @@
             <div class="d-flex justify-content-center">
                 <img class="map-image" src="../../../../assets/andalucia.png" alt="">
             </div>
+        </div>
+
+        <div class="py-5">
+            <h4 class="fw-bold">3. ¿Quieres solicitar presupuesto?</h4>
+            <p class="">En poco pasos, podrás <strong>solicitar la instalación</strong> que usted necesite y nuestros técnicos <strong>se pondrán en contacto</strong> con usted para <strong>concertar una cita</strong>.</p>
+            <div class="d-flex justify-content-md-center">
+                <button class="btn btn-success btn-responsive" data-bs-toggle="modal" data-bs-target="#wizardModal" (click)="step = 1"><strong> Solicitar presupuesto</strong></button>
+            </div>
+            <app-request-budget-modal [step]="step"></app-request-budget-modal>
         </div>
 
         <div class="d-flex flex-column justify-content-center align-items-center">

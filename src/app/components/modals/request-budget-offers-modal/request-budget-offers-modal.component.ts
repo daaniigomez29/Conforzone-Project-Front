@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { SpecificService } from '../../../interfaces/SpecificService';
+import { SpecificService, SpecificServiceName } from '../../../interfaces/SpecificService';
 import { INSTALLATIONS } from '../../../js/installations';
 import { LinksMobilePcService } from '../../../services/links-mobile-pc.service';
 import { SpecificServiceService } from '../../../services/specific-service.service';
@@ -23,7 +23,7 @@ export class RequestBudgetOffersModalComponent {
   //Step 2 (Offers)
 
   //Step 3 (Offers)
-  specificServicesOffersArray: SpecificService[] = []
+  specificServicesOffersArray: SpecificServiceName[] = []
   specificServiceOfferChoosed: SpecificService = {
     id: -1,
     name: "",
@@ -65,7 +65,7 @@ export class RequestBudgetOffersModalComponent {
     if (this.specificServicesOffersArray.length === 0) {
       this.specificServiceService.getSpecificServicesOffers().subscribe({
         next: data => {
-          this.specificServicesOffersArray = data
+          this.specificServicesOffersArray = data;
         }
       })
     }

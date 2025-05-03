@@ -4,7 +4,7 @@
       <label class="text-dark">Oferta:</label>
     </div>
     <select class="form-select mb-3" [(ngModel)]="specificServiceOfferChoosedId">
-      <option value="" disabled>Selecciona la oferta que desea:</option>
+      <option value="{{-1}}" disabled selected>Selecciona la oferta que desea:</option>
       @for (specificService of specificServicesOffersArray; track $index) {
       <option value="{{specificService.id}}">{{specificService.name}}</option>
       }

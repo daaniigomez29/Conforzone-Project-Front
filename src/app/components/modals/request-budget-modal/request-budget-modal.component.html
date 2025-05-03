@@ -29,7 +29,7 @@
             </div>
           </div>
           @if (installationType.includes('servicios')) {
-              <app-request-budget-services-modal [step]="step" (stepChange)="step = $event"></app-request-budget-services-modal>
+              <app-request-budget-services-modal #servicesComponent [step]="step" (stepChange)="step = $event"></app-request-budget-services-modal>
           } @else {
             <app-request-budget-offers-modal #offersComponent [step]="step" (stepChange)="step = $event"></app-request-budget-offers-modal>
           }

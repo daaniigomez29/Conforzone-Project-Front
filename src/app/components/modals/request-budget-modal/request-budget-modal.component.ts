@@ -17,6 +17,7 @@ import { RequestBudgetOffersModalComponent } from '../request-budget-offers-moda
 export class RequestBudgetModalComponent implements OnInit, OnDestroy, AfterViewInit {
 
   @ViewChild('offersComponent') offersComponent!: RequestBudgetOffersModalComponent;
+  @ViewChild('servicesComponent') servicesComponent!: RequestBudgetServicesModalComponent;
 
   private routerSubscription: any
 
@@ -49,6 +50,10 @@ export class RequestBudgetModalComponent implements OnInit, OnDestroy, AfterView
 
   onModalHidden = () => {
     this.step = 1
+    if(this.servicesComponent && this.servicesComponent.totalPrice > this.servicesComponent.specificServiceChoosed.firstPrice){
+      console.log('1')
+      this.servicesComponent.closeModal()
+    }
   }
 
   ngOnDestroy() {

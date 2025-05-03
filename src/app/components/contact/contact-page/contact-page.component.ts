@@ -47,7 +47,8 @@ export class ContactPageComponent {
 
   noValid(field: string): boolean {
     const control = this.formContactEmail?.controls[field];
-    return control?.invalid && (control?.touched || this.formSubmitted);  }
+    return control?.invalid && (control?.touched || this.formSubmitted);  
+  }
 
   get emailError(): string {
     const errors = this.formContactEmail.get('fromEmail')?.errors

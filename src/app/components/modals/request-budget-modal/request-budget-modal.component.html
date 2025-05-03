@@ -1,0 +1,40 @@
+<div class="modal fade text-dark" id="wizardModal" tabindex="-1" aria-labelledby="wizardModalLabel" aria-hidden="false">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+  
+        <div class="modal-header">
+          <h5 class="modal-title fw-bold text-dark" id="wizardModalLabel">Solicitar presupuesto</h5>
+          <button type="button" class="btn-close" (click)="step = 1" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+
+        <div class="modal-body">
+          <!-- Paso 1 -->
+          <div *ngIf="step === 1">
+            <div class="text-start pb-3">
+                <label class="text-dark">Tipo de solicitud</label>
+            </div>
+            <select class="form-select mb-3" [(ngModel)]="installationType">
+              <option value="" disabled>Selecciona</option>
+              <option value="servicios">Servicios</option>
+              <option value="ofertas">Ofertas</option>
+            </select>
+            <div class="text-start">
+              @if (errorString) {
+              <p class="text-danger">{{errorString}}</p>
+              }
+            </div>
+            <div class="d-flex gap-3">
+              <button class="btn btn-danger w-100" data-bs-dismiss="modal">Cancelar</button>
+              <button class="btn btn-success w-100" (click)="continueToStep2()">Siguiente</button>
+            </div>
+          </div>
+          @if (installationType.includes('servicios')) {
+              <app-request-budget-services-modal [step]="step" (stepChange)="step = $event"></app-request-budget-services-modal>
+          } @else {
+            <app-request-budget-offers-modal #offersComponent [step]="step" (stepChange)="step = $event"></app-request-budget-offers-modal>
+          }
+        </div>
+  
+      </div>
+    </div>
+  </div>

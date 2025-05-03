@@ -5,6 +5,7 @@ import {INSTALLATIONS} from '../../../js/installations'
 import { SpecificService } from '../../../interfaces/SpecificService';
 import { CommonModule } from '@angular/common';
 import { SpecificServicesGeneralViewComponent } from '../specific-services-general-view/specific-services-general-view.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-specific-service',
@@ -22,12 +23,14 @@ export class SpecificServiceComponent {
 
     specificServicesArray:SpecificService[] = []
 
-  constructor(private route:ActivatedRoute, public specificServiceService:SpecificServiceService){
+  constructor(private route:ActivatedRoute, public specificServiceService:SpecificServiceService, private title:Title){
 
   }
 
   ngOnInit(){
      this.findSlug()
+     this.title.setTitle(this.installationName + " barato | Conforzone Eficiencias")
+     
 
      this.specificServiceService.getAllSpecificServicesBySlug(this.slug).subscribe({
       next: data => {

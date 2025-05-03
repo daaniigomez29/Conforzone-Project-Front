@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { LoaderService } from '../../../services/loader.service';
 import { LinksMobilePcService } from '../../../services/links-mobile-pc.service';
 import { ModalService } from '../../../services/modal.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-specific-service-detail',
@@ -53,9 +54,11 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
 
   step = 1;
   installationPlace = ''
-  unidadesInterior = 1;
 
-  public constructor(public route: ActivatedRoute, private router: Router, public specificServiceService: SpecificServiceService, public loaderService:LoaderService, private linksMobilePcService:LinksMobilePcService, private modalService:ModalService) {
+  whatsappRequestBudgetMessage = ''
+  emailRequestBudgetMessage = ''
+
+  public constructor(public route: ActivatedRoute, private router: Router, public specificServiceService: SpecificServiceService, public loaderService:LoaderService, private linksMobilePcService:LinksMobilePcService, private modalService:ModalService, private title:Title) {
 
   }
 
@@ -111,6 +114,8 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
 
         this.totalPrice = data.firstPrice
         this.arrayDescription = data.description.split(".")
+
+        this.title.setTitle(this.specificService.name)
       },
       error: err => {
         console.error(err)
@@ -130,6 +135,8 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
 
         this.totalPrice = data.firstPrice
         this.arrayDescription = data.description.split(".")
+
+        this.title.setTitle(this.specificService.name)
       }
     })
   }
@@ -161,42 +168,11 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
   continueModalSelectCity() {
     if (this.installationPlace) {
       this.step = 2
+      this.whatsappRequestBudgetMessage = this.linksMobilePcService.whatsappRequestBudgetMessage(this.specificService.name, this.quantity, this.quantityAdditionalMeter, this.installationPlace, false)
+      this.emailRequestBudgetMessage = this.linksMobilePcService.emailRequestBudgetMessage(this.specificService.name, this.quantity, this.quantityAdditionalMeter, this.installationPlace, false)
     } else {
       alert("Por favor, seleccione una ciudad para continuar")
     }
 
   }
-
-  get whatsappMessage() {
-    const base = this.linksMobilePcService.getWhatsappRequestBudgetLink()
-    let messageWhatsapp = `¡Hola! Me gustaría solicitar la ${this.specificService.name}. Necesitaría ${this.quantity} instalación/es. La instalación sería en ${this.installationPlace}.`
-
-    if (this.quantityAdditionalMeter > 0) {
-      messageWhatsapp = `¡Hola! Me gustaría solicitar la ${this.specificService.name}. Necesitaría ${this.quantity} instalación/es y ${this.quantityAdditionalMeter} metro/s adicional/es. La instalación sería en ${this.installationPlace}.`
-    }
-
-    return base + encodeURIComponent(messageWhatsapp)
-  }
-
-  get emailMessage() {
-    const base = this.linksMobilePcService.getEmailRequestBudgetLink()
-    let messageEmail
-
-    if(!base.includes('mailto')){
-        messageEmail = `Hola!%20Me%20gustaría%20solicitar%20la%20${this.specificService.name}.%20Necesitaría%20${this.quantity}%20instalación/es.%20La%20instalación%20sería%20en%20${this.installationPlace}.`
-  
-      if (this.quantityAdditionalMeter > 0) {
-        messageEmail = `Hola!%20Me%20gustaría%20solicitar%20la%20${this.specificService.name}.%20Necesitaría%20${this.quantity}%20instalación/es%20y%20${this.quantityAdditionalMeter}%20metro/s%20adicional/es.%20La%20instalación%20sería%20en%20${this.installationPlace}.`
-      }
-    } else {
-      messageEmail = `Hola! Me gustaría solicitar la ${this.specificService.name}. Necesitaría ${this.quantity} instalación/es. La instalación sería en ${this.installationPlace}.`
-
-      if(this.quantityAdditionalMeter > 0) {
-        messageEmail = `Hola! Me gustaría solicitar la ${this.specificService.name}. Necesitaría ${this.quantity} instalación/es y ${this.quantityAdditionalMeter}. La instalación sería en ${this.installationPlace}.`
-      }
-    }
-
-    return base + messageEmail
-  }
-
 }

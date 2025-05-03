@@ -8,3 +8,8 @@ export interface SpecificService {
     available:boolean,
     offer:boolean
 }
+
+export interface SpecificServiceName {
+    id:number, 
+    name:string
+}

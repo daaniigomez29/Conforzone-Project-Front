@@ -6,7 +6,8 @@ export interface SpecificService {
     firstPrice:number,
     pricePerMeter:number,
     available:boolean,
-    offer:boolean
+    offer:boolean,
+    image:string
 }
 
 export interface SpecificServiceName {

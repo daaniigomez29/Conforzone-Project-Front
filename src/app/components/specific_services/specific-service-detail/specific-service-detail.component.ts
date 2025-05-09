@@ -41,7 +41,8 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
     firstPrice: 0,
     pricePerMeter: 0,
     available: true,
-    offer: false
+    offer: false,
+    image:""
   }
 
   quantity: number = 1
@@ -111,6 +112,7 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
         this.specificService.firstPrice = data.firstPrice
         this.specificService.pricePerMeter = data.pricePerMeter
         this.specificService.available = data.available
+        this.specificService.image = data.image;
 
         this.totalPrice = data.firstPrice
         this.arrayDescription = data.description.split(".")
@@ -137,6 +139,9 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
         this.arrayDescription = data.description.split(".")
 
         this.title.setTitle(this.specificService.name)
+      },
+      error: err => {
+        console.error(err)
       }
     })
   }

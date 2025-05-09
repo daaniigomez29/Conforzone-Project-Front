@@ -1,5 +1,5 @@
-import { Component, NgModule} from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { Component} from '@angular/core';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { SpecificServiceService } from '../../../services/specific-service.service';
 import {INSTALLATIONS} from '../../../js/installations'
 import { SpecificService } from '../../../interfaces/SpecificService';
@@ -29,15 +29,13 @@ export class SpecificServiceComponent {
 
   ngOnInit(){
      this.findSlug()
-     this.title.setTitle(this.installationName + " barato | Conforzone Eficiencias")
-     
 
      this.specificServiceService.getAllSpecificServicesBySlug(this.slug).subscribe({
       next: data => {
        this.specificServicesArray = data
       },
       error: err => {
-
+        console.error(err)
       }
      })
   }
@@ -47,6 +45,7 @@ export class SpecificServiceComponent {
     const match = INSTALLATIONS.find(i => i.slug === this.slug)
     this.installationPhrase = INSTALLATIONS.find(i => i.slug === this.slug)?.subname
     this.installationName = match ? match.name : 'La instalación no se ha encontrado o no existe'
+    this.title.setTitle(this.installationName + " barato | Conforzone Eficiencias")
   }
 
   getLink(slug:string) {

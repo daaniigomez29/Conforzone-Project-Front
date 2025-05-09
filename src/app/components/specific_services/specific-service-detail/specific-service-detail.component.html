@@ -4,7 +4,7 @@
       @if (this.specificService.name) {
     <div class="row border rounded bg-white text-center text-md-start py-2">
       <div class="col-md-4 d-flex justify-content-center align-items-center">
-        <img class="img-service" src="../../../../assets/instalacion-split-pared.jpg" alt="">
+        <img class="img-service" [src]="specificService.image" alt="">
       </div>
       <div class="col-md-8 d-flex flex-column justify-content-start py-3">
         <h1 class="fw-bold fs-3 pb-2">{{specificService.name}}</h1>

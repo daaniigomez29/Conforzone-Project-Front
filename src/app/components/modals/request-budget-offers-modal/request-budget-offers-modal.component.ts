@@ -32,7 +32,8 @@ export class RequestBudgetOffersModalComponent {
     firstPrice: 0,
     pricePerMeter: 0,
     available: false,
-    offer: false
+    offer: false,
+    image: ""
   }
 
   specificServiceOfferChoosedId: number = -1
@@ -83,6 +84,7 @@ export class RequestBudgetOffersModalComponent {
             this.specificServiceOfferChoosed.name = data.name;
             this.specificServiceOfferChoosed.firstPrice = data.firstPrice;
             this.specificServiceOfferChoosed.pricePerMeter = data.pricePerMeter;
+            this.specificServiceOfferChoosed.image = data.image;
 
             this.totalPrice = data.firstPrice
           }

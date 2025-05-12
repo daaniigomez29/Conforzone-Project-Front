@@ -53,11 +53,10 @@
   transform: scale(1.05);
 }
 
-@media (min-width: 990px) {
   .animationImage {
     animation: fadeInLeft 1s;
   } 
-}
+
 
 .is-home{
   background: transparent !important;

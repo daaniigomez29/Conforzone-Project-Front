@@ -49,19 +49,11 @@
   transition: transform 0.2s ease;
 }
 
-.logo:hover {
-  transform: scale(1.05);
-}
 
-[data-aos="fade-left-soft"] {
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: opacity 1s ease, transform 1s ease;
-}
-
-[data-aos="fade-left-soft"].aos-animate {
-  opacity: 1;
-  transform: translateX(0px);
+@media (min-width: 990px) {
+  .logo {
+    animation: fadeInLeft 0.9s;
+  } 
 }
 
 .is-home{

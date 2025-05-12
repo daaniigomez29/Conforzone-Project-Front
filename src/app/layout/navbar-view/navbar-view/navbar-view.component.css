@@ -54,7 +54,7 @@
 }
 
 @media (min-width: 990px) {
-  .logo {
+  .animationImage {
     animation: fadeInLeft 1s;
   } 
 }

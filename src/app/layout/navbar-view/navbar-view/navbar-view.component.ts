@@ -46,6 +46,7 @@ export class NavbarViewComponent {
     this.popoverService.initPopovers()
 
     AOS.init({
+         duration:'600',
          easing: 'ease-out',
          once: true, // solo una vez al entrar en viewport
          disable: () => typeof window !== 'undefined' && window.innerWidth < 900

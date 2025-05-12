@@ -57,7 +57,7 @@
   [data-aos="fade-left-soft"] {
   opacity: 0;
   transform: translateX(-20px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  transition: opacity ease, transform ease;
 }
 
 [data-aos="fade-left-soft"].aos-animate {

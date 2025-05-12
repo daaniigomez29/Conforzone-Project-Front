@@ -53,10 +53,16 @@
   transform: scale(1.05);
 }
 
-  .animationImage {
-    animation: fadeInLeft 1s;
-  } 
+[data-aos="fade-left-soft"] {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
 
+[data-aos="fade-left-soft"].aos-animate {
+  opacity: 1;
+  transform: translateX(0px);
+}
 
 .is-home{
   background: transparent !important;

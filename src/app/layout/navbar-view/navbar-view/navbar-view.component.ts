@@ -4,6 +4,7 @@ import { AuthUserService } from '../../../services/auth-user.service';
 import { FooterComponent } from '../../../components/footer/footer/footer.component';
 import { PopoverService } from '../../../services/popover.service';
 import { LinksMobilePcService } from '../../../services/links-mobile-pc.service';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-navbar-view',
@@ -43,6 +44,12 @@ export class NavbarViewComponent {
 
   ngAfterViewInit() {
     this.popoverService.initPopovers()
+
+    AOS.init({
+         easing: 'ease-out',
+         once: true, // solo una vez al entrar en viewport
+         disable: () => typeof window !== 'undefined' && window.innerWidth < 900
+       });
   }
 
   isScrolled = false;

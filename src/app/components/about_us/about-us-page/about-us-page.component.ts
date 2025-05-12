@@ -1,5 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-about-us-page',
@@ -41,46 +42,13 @@ export class AboutUsPageComponent implements AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-    if(window.innerWidth > 1250) {
-    const textsLeft = document.querySelectorAll('.animatedLeft');
-    const textsRight = document.querySelectorAll('.animatedRight');
-
-    document.querySelectorAll('.col-md-6').forEach(el => el.classList.add('invisible'))
-
-    const loadTextLeft = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.remove('invisible');
-          entry.target.classList.add('fade-in-left');
-          observer.unobserve(entry.target);
-        }
-      });
-    };
-
-    const loadTextRight = (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.remove('invisible');
-          entry.target.classList.add('fade-in-right');
-          observer.unobserve(entry.target);
-        }
-      });
-    };
-
-    const observerLeft = new IntersectionObserver(loadTextLeft, {
-      root: null, 
-      rootMargin: '0px',
-      threshold: 0.5
-    });
-
-    const observerRight = new IntersectionObserver(loadTextRight, {
-      root: null, 
-      rootMargin: '0px',
-      threshold: 0.5,
-    });
-
-    textsLeft.forEach(el => observerLeft.observe(el));
-    textsRight.forEach(el => observerRight.observe(el));
-    }
+    AOS.init({
+     offset: 50,
+     duration: 900,
+     easing: 'ease-out',
+     once: true, // solo una vez al entrar en viewport
+     disable: () => typeof window !== 'undefined' && window.innerWidth < 900
+   });
+   AOS.refresh()
   }
 }

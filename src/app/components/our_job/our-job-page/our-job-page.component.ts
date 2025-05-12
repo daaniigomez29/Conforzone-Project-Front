@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
+import * as AOS from 'aos';
 
 @Component({
   selector: 'app-our-job-page',
@@ -36,5 +37,15 @@ export class OurJobPageComponent {
       property: 'og:description',
       content: 'Descubre algunos de nuestros trabajos en instalación de aire acondicionado, termos, placas solares y sistemas de climatización. Calidad, profesionalidad y eficiencia en cada proyecto.'
     });
+  }
+  
+  ngAfterViewInit() {
+    AOS.init({
+          offset: 50,
+          duration: 600,
+          easing: 'ease-out',
+          once: true, // solo una vez al entrar en viewport
+          disable: () => typeof window !== 'undefined' && window.innerWidth < 900
+        });
   }
 }

@@ -36,6 +36,10 @@
   color: rgb(0, 0, 0);
 }
 
+.navbar-item {
+  animation: fadeInUp 0.9s ease backwards;
+}
+
 .navbar-item a.active {
   color: #2098D1;
   font-weight: 600;
@@ -47,6 +51,12 @@
 
 .logo:hover {
   transform: scale(1.05);
+}
+
+@media (min-width: 990px) {
+  .logo {
+    animation: fadeInLeft 1s;
+  } 
 }
 
 .is-home{
@@ -187,3 +197,25 @@
     left: 0;
     right: 0;
   }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}

@@ -5,7 +5,7 @@
                 
             
             @for (specificService of specificServicesArray; track $index) {
-            <div class="col col-md-2 col-12 bg-white rounded shadow pointer px-0 py-md-2" style="position: relative; z-index:1">
+            <div class="col col-md-2 col-12 bg-white rounded shadow pointer px-0 py-md-2 fadeInUp" style="position: relative; z-index:1;" [ngStyle]="{'animation-delay': ($index * 50) + 'ms'}">
                 <a routerLink='{{linkSlug}}/{{specificService.id}}'>
                     <div class="hover-img d-flex justify-content-center">
                         <img [src]="specificService.image" class="img-fluid px-2" alt="">

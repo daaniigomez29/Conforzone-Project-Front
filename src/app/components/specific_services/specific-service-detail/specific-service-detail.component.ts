@@ -8,7 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { LoaderService } from '../../../services/loader.service';
 import { LinksMobilePcService } from '../../../services/links-mobile-pc.service';
 import { ModalService } from '../../../services/modal.service';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-specific-service-detail',
@@ -19,11 +19,11 @@ import { Title } from '@angular/platform-browser';
 })
 export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
 
-  private routerSubscription:any
+  private routerSubscription: any
 
-  emailContactLink:string = ''
+  emailContactLink: string = ''
 
-  whatsappContactLink:string = ''
+  whatsappContactLink: string = ''
 
   isOfferPage: boolean = false
 
@@ -42,7 +42,7 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
     pricePerMeter: 0,
     available: true,
     offer: false,
-    image:""
+    image: ""
   }
 
   quantity: number = 1
@@ -59,12 +59,32 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
   whatsappRequestBudgetMessage = ''
   emailRequestBudgetMessage = ''
 
-  public constructor(public route: ActivatedRoute, private router: Router, public specificServiceService: SpecificServiceService, public loaderService:LoaderService, private linksMobilePcService:LinksMobilePcService, private modalService:ModalService, private title:Title) {
+  public constructor(public route: ActivatedRoute, private router: Router, public specificServiceService: SpecificServiceService, public loaderService: LoaderService, private linksMobilePcService: LinksMobilePcService, private modalService: ModalService, private title: Title, private meta: Meta) {
 
   }
 
 
   ngOnInit() {
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Servicio al mejor precio en Sevilla, Huelva, Cádiz, Córdoba y Málaga. Su instalación de cualquier equipo de climatización en unos instantes con la mejor seguridad.'
+    });
+
+    this.meta.updateTag({
+      name: 'robots',
+      content: 'index, follow'
+    });
+
+    this.meta.updateTag({
+      name: 'keywords',
+      content: 'aire acondicionado, aire acondicionado barato, aire acondicionado Sevilla, aire acondicionado Málaga, aire acondicionado Córdoba, aire acondicionado Huelva, aire acondicionado Cádiz, instalar aire acondicionado, climatización, mantenimiento, placas solares, Conforzone, servicio, servicios, conductos, cassette, suelo, techo, suelo techo, termos, termos eléctricos, aerotermia'
+    });
+
+    this.meta.updateTag({
+      property: 'og:description',
+      content: 'Servicio al mejor precio en Sevilla, Huelva, Cádiz, Córdoba y Málaga. Su instalación de cualquier equipo de climatización en unos instantes con la mejor seguridad.'
+    });
+
     let id = this.route.snapshot.params['id']
     this.specificServiceId = id ? id : 0
 
@@ -81,10 +101,10 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
     this.whatsappContactLink = this.linksMobilePcService.getWhatsappContactLink();
 
     this.routerSubscription = this.router.events.subscribe(event => {
-          if (event instanceof NavigationStart){
-            this.modalService.closeModal('wizardModal')
-          }
-        })
+      if (event instanceof NavigationStart) {
+        this.modalService.closeModal('wizardModal')
+      }
+    })
   }
 
   ngOnDestroy(): void {
@@ -99,7 +119,7 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
     this.installationLabel = match ? INSTALLATIONS.find(i => i.slug === this.slug)?.label : ''
   }
 
-  obtainDataFromSpecificService(idSprecificService:number) {
+  obtainDataFromSpecificService(idSprecificService: number) {
     this.slug = this.route.snapshot.params['slug']
 
     this.findSlug()
@@ -118,6 +138,11 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
         this.arrayDescription = data.description.split(".")
 
         this.title.setTitle(this.specificService.name)
+
+        this.meta.updateTag({
+          property: 'og:title',
+          content: this.specificService.name
+        });
       },
       error: err => {
         console.error(err)
@@ -125,7 +150,7 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
     })
   }
 
-  obtainDataFromOfferSpecificService(idSprecificService:number) {
+  obtainDataFromOfferSpecificService(idSprecificService: number) {
     this.specificServiceService.getOfferSpecificServicesById(idSprecificService).subscribe({
       next: data => {
         this.specificServiceId = data.id
@@ -139,6 +164,11 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
         this.arrayDescription = data.description.split(".")
 
         this.title.setTitle(this.specificService.name)
+
+        this.meta.updateTag({
+          property: 'og:title',
+          content: this.specificService.name
+        });
       },
       error: err => {
         console.error(err)

@@ -1,4 +1,5 @@
 import { AfterViewInit, Component } from '@angular/core';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about-us-page',
@@ -9,8 +10,34 @@ import { AfterViewInit, Component } from '@angular/core';
 })
 export class AboutUsPageComponent implements AfterViewInit{
 
+  constructor(private meta:Meta){}
+
 
   ngOnInit() {  
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Nuestra empresa. Cómo trabajamos y que es lo que ofrecemos para que confíe en nosotros.'
+    });
+
+    this.meta.updateTag({
+      name: 'robots',
+      content: 'index, follow'
+    });
+
+    this.meta.updateTag({
+      name: 'keywords',
+      content: 'aire acondicionado, aire acondicionado barato, aire acondicionado Sevilla, aire acondicionado Málaga, aire acondicionado Córdoba, aire acondicionado Huelva, aire acondicionado Cádiz, instalar aire acondicionado, climatización, mantenimiento, placas solares, Conforzone, servicio, servicios, conductos, cassette, suelo, techo, suelo techo, termos, termos eléctricos, aerotermia'
+    });
+
+    this.meta.updateTag({
+      property: 'og:title',
+      content: 'Sobre nosotros | Conforzone Eficiencias'
+    });
+
+    this.meta.updateTag({
+      property: 'og:description',
+      content: 'Nuestra empresa. Cómo trabajamos y que es lo que ofrecemos para que confíe en nosotros.'
+    });
   }
 
   ngAfterViewInit(): void {

@@ -5,7 +5,7 @@ import {INSTALLATIONS} from '../../../js/installations'
 import { SpecificService } from '../../../interfaces/SpecificService';
 import { CommonModule } from '@angular/common';
 import { SpecificServicesGeneralViewComponent } from '../specific-services-general-view/specific-services-general-view.component';
-import { Title } from '@angular/platform-browser';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-specific-service',
@@ -23,11 +23,31 @@ export class SpecificServiceComponent {
 
     specificServicesArray:SpecificService[] = []
 
-  constructor(private route:ActivatedRoute, public specificServiceService:SpecificServiceService, private title:Title){
+  constructor(private route:ActivatedRoute, public specificServiceService:SpecificServiceService, private title:Title, private meta:Meta){
 
   }
 
   ngOnInit(){
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Descubre algunos de nuestros servicios disponibles. Calidad, profesionalidad y eficiencia en cada proyecto.'
+    });
+
+    this.meta.updateTag({
+      name: 'robots',
+      content: 'index, follow'
+    });
+
+    this.meta.updateTag({
+      name: 'keywords',
+      content: 'aire acondicionado, aire acondicionado barato, aire acondicionado Sevilla, aire acondicionado Málaga, aire acondicionado Córdoba, aire acondicionado Huelva, aire acondicionado Cádiz, instalar aire acondicionado, climatización, mantenimiento, placas solares, Conforzone, servicio, servicios, conductos, cassette, suelo, techo, suelo techo, termos, termos eléctricos, aerotermia'
+    });
+
+    this.meta.updateTag({
+      property: 'og:description',
+      content: 'Descubre algunos de nuestros servicios disponibles. Calidad, profesionalidad y eficiencia en cada proyecto.'
+    });
+
      this.findSlug()
 
      this.specificServiceService.getAllSpecificServicesBySlug(this.slug).subscribe({
@@ -46,6 +66,11 @@ export class SpecificServiceComponent {
     this.installationPhrase = INSTALLATIONS.find(i => i.slug === this.slug)?.subname
     this.installationName = match ? match.name : 'La instalación no se ha encontrado o no existe'
     this.title.setTitle(this.installationName + " barato | Conforzone Eficiencias")
+
+    this.meta.updateTag({
+      property: 'og:title',
+      content: `${this.installationName} barato | Conforzone Eficiencias`
+    });
   }
 
   getLink(slug:string) {

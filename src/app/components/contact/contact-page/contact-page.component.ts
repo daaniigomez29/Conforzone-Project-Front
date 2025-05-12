@@ -8,6 +8,7 @@ import { ValidatorService } from '../../../validators/validator.service';
 import Swal from 'sweetalert2';
 import { RouterModule } from '@angular/router';
 import { LinksMobilePcService } from '../../../services/links-mobile-pc.service';
+import { Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contact-page',
@@ -32,9 +33,34 @@ export class ContactPageComponent {
 
   formSubmitted:boolean = false;
 
-  public constructor(private emailService:EmailService, private fb:FormBuilder, private validatorService:ValidatorService, private linksMobilePcService:LinksMobilePcService){}
+  public constructor(private emailService:EmailService, private fb:FormBuilder, private validatorService:ValidatorService, private linksMobilePcService:LinksMobilePcService, private meta:Meta){}
 
   ngOnInit() {
+    this.meta.updateTag({
+      name: 'description',
+      content: 'Contacta con Conforzone Eficiencias para solicitar presupuestos o resolver dudas sobre instalación de aire acondicionado, termos, placas solares, etc. Atendemos en Sevilla, Huelva, Málaga, Cádiz y Córdoba.'
+    });
+
+    this.meta.updateTag({
+      name: 'robots',
+      content: 'index, follow'
+    });
+
+    this.meta.updateTag({
+      name: 'keywords',
+      content: 'aire acondicionado, aire acondicionado barato, aire acondicionado Sevilla, aire acondicionado Málaga, aire acondicionado Córdoba, aire acondicionado Huelva, aire acondicionado Cádiz, instalar aire acondicionado, climatización, mantenimiento, placas solares, Conforzone, servicio, servicios, conductos, cassette, suelo, techo, suelo techo, termos, termos eléctricos, aerotermia'
+    });
+
+    this.meta.updateTag({
+      property: 'og:title',
+      content: 'Contáctanos | Conforzone Eficiencias'
+    });
+
+    this.meta.updateTag({
+      property: 'og:description',
+      content: 'Contacta con Conforzone Eficiencias para solicitar presupuestos o resolver dudas sobre instalación de aire acondicionado, termos, placas solares, etc. Atendemos en Sevilla, Huelva, Málaga, Cádiz y Córdoba.'
+    });
+
     this.emailContactLink = this.linksMobilePcService.getEmailContactLink()
   }
 

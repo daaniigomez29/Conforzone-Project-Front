@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class EmailService {
 
-  apiUrl:string = "https://conforzone-project-back-production.up.railway.app/api/v1/email";
+  apiUrl = process.env['CONFORZONE_API_URL'];
 
   constructor(private http:HttpClient) { }
 

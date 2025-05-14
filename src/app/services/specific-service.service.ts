@@ -7,7 +7,7 @@ import { SpecificService } from '../interfaces/SpecificService';
 })
 export class SpecificServiceService {
 
-  apiUrl = "https://conforzone-project-back-production.up.railway.app/api/v1/specific_services"
+  apiUrl:string = "https://conforzone-project-back-production.up.railway.app/api/v1/specific_services"
 
   constructor(public http:HttpClient) { }
 

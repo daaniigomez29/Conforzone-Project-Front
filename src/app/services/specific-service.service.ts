@@ -7,7 +7,7 @@ import { SpecificService } from '../interfaces/SpecificService';
 })
 export class SpecificServiceService {
 
-  apiUrl = process.env['CONFORZONE_API_URL_SPECIFIC_SERVICES']
+  apiUrl:string = "https://conforzone-project-back-production.up.railway.app/api/v1/specific_services"
 
   constructor(public http:HttpClient) { }
 

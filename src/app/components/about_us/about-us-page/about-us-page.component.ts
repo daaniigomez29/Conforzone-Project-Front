@@ -49,6 +49,8 @@ export class AboutUsPageComponent implements AfterViewInit{
      once: true, // solo una vez al entrar en viewport
      disable: () => typeof window !== 'undefined' && window.innerWidth < 900
    });
-   AOS.refresh()
+   setTimeout(() => {
+      AOS.refresh();
+    }, 500);
   }
 }

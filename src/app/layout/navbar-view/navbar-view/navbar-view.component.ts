@@ -40,11 +40,12 @@ export class NavbarViewComponent {
         let origin = '';
 
         if (isPlatformBrowser(this.platformId)) {
-        origin = this.platformLocation.protocol + '//' + this.platformLocation.hostname + (this.platformLocation.port ? ':' + this.platformLocation.port : '');
+        origin = this.platformLocation.protocol + '//' + this.platformLocation.hostname;
       } else {
         origin = 'https://www.conforzoneeficiencias.es'; // URL base para SSR
       }
       const canonicalUrl = origin + event.urlAfterRedirects;
+      console.log(canonicalUrl)
       this.canonicalService.setCanonicalURL(canonicalUrl);
       }
     });

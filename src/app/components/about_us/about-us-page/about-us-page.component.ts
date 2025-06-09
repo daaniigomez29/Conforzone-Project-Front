@@ -1,4 +1,5 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { AfterViewInit, Component, Inject, Renderer2 } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import * as AOS from 'aos';
 
@@ -9,12 +10,13 @@ import * as AOS from 'aos';
   templateUrl: './about-us-page.component.html',
   styleUrl: './about-us-page.component.css'
 })
-export class AboutUsPageComponent implements AfterViewInit{
+export class AboutUsPageComponent implements AfterViewInit {
 
-  constructor(private meta:Meta){}
+  constructor(private meta: Meta) { }
 
 
-  ngOnInit() {  
+  ngOnInit() {
+
     this.meta.updateTag({
       name: 'description',
       content: 'Nuestra empresa. Cómo trabajamos y que es lo que ofrecemos para que confíe en nosotros.'
@@ -43,13 +45,13 @@ export class AboutUsPageComponent implements AfterViewInit{
 
   ngAfterViewInit(): void {
     AOS.init({
-     offset: 50,
-     duration: 900,
-     easing: 'ease-out',
-     once: true, // solo una vez al entrar en viewport
-     disable: () => typeof window !== 'undefined' && window.innerWidth < 900
-   });
-   setTimeout(() => {
+      offset: 50,
+      duration: 900,
+      easing: 'ease-out',
+      once: true, // solo una vez al entrar en viewport
+      disable: () => typeof window !== 'undefined' && window.innerWidth < 900
+    });
+    setTimeout(() => {
       AOS.refresh();
     }, 500);
   }

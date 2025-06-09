@@ -45,7 +45,6 @@ export class NavbarViewComponent {
         origin = 'https://www.conforzoneeficiencias.es'; // URL base para SSR
       }
       const canonicalUrl = origin + event.urlAfterRedirects;
-      console.log(canonicalUrl)
       this.canonicalService.setCanonicalURL(canonicalUrl);
       }
     });

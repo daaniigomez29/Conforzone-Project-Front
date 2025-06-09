@@ -1,10 +1,12 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
 import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { AuthUserService } from '../../../services/auth-user.service';
 import { FooterComponent } from '../../../components/footer/footer/footer.component';
 import { PopoverService } from '../../../services/popover.service';
 import { LinksMobilePcService } from '../../../services/links-mobile-pc.service';
 import * as AOS from 'aos';
+import { CanonicalURLService } from '../../../services/canonical-url.service';
+import { isPlatformBrowser, PlatformLocation } from '@angular/common';
 
 @Component({
   selector: 'app-navbar-view',
@@ -21,7 +23,7 @@ export class NavbarViewComponent {
 
   emailContactLink:string = '';
 
-  constructor(public authService: AuthUserService, public router: Router, public popoverService:PopoverService, private linksMobilePcService:LinksMobilePcService) { }
+  constructor(public authService: AuthUserService, public router: Router, public popoverService:PopoverService, private linksMobilePcService:LinksMobilePcService, private canonicalService:CanonicalURLService, private platformLocation:PlatformLocation, @Inject(PLATFORM_ID) private platformId: Object) { }
 
   ngOnInit() {
     let navbar = document.querySelector(".navbar");
@@ -34,7 +36,16 @@ export class NavbarViewComponent {
         window.scrollTo({ top: 0, behavior: 'smooth' })
         event.urlAfterRedirects == "/inicio" ? navbar?.classList.toggle("is-home") : navbar?.classList.remove("is-home");
         event.urlAfterRedirects == "/inicio" ? navbarMobile?.classList.toggle("is-home") : navbarMobile?.classList.remove("is-home"); //Al recargar la página el navbar se queda blanco
+       
+        let origin = '';
 
+        if (isPlatformBrowser(this.platformId)) {
+        origin = this.platformLocation.protocol + '//' + this.platformLocation.hostname + (this.platformLocation.port ? ':' + this.platformLocation.port : '');
+      } else {
+        origin = 'https://www.conforzoneeficiencias.es'; // URL base para SSR
+      }
+      const canonicalUrl = origin + event.urlAfterRedirects;
+      this.canonicalService.setCanonicalURL(canonicalUrl);
       }
     });
 

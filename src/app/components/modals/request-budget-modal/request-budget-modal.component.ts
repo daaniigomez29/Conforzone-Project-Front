@@ -51,7 +51,6 @@ export class RequestBudgetModalComponent implements OnInit, OnDestroy, AfterView
   onModalHidden = () => {
     this.step = 1
     if(this.servicesComponent && this.servicesComponent.totalPrice > this.servicesComponent.specificServiceChoosed.firstPrice){
-      console.log('1')
       this.servicesComponent.closeModal()
     }
   }

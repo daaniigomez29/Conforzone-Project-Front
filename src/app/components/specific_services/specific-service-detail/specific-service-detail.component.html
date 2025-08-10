@@ -134,7 +134,12 @@
 
       <div class="tab-content rounded border-end border-bottom border-start" id="myTabContent">
         <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
-          <p class="pt-3 fw-medium">Nuestra instalación básica de {{installationLabel}} incluye:</p>
+          @if (isOfferPage) {
+            <p class="pt-3 fw-medium">¡No te pierdas <strong>nuestra oferta</strong>! Aprovecha para obtener su equipo de climatización con <strong>instalación incluida</strong>. Disfruta de un <strong>ambiente fresco</strong> y <strong>confortable</strong> en tu hogar u oficina, con <strong>instalación rápida y garantía</strong>.</p>
+            <p class="pt-3 fw-medium">La oferta incluye:</p>
+          } @else {
+            <p class="pt-3 fw-medium">Nuestra instalación básica de {{installationLabel}} incluye:</p>
+          }
           <ul class="li-with-dots px-3">
             @for (description of arrayDescription; track $index) {
             <li class="">{{description}}</li>

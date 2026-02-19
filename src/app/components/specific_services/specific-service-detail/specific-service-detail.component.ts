@@ -161,7 +161,7 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
         this.specificService.available = data.available
         this.specificService.image = data.image
 
-        this.totalPrice = data.firstPrice
+        //this.totalPrice = data.firstPrice
         this.arrayDescription = data.description.split(".")
 
         this.title.setTitle(this.specificService.name)
@@ -179,25 +179,25 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
 
   increment() {
     this.quantity++;
-    this.totalPrice += this.specificService.firstPrice
+    //this.totalPrice += this.specificService.firstPrice
   }
 
   decrement() {
     if (this.quantity > 1) {
       this.quantity--;
-      this.totalPrice -= this.specificService.firstPrice
+      //this.totalPrice -= this.specificService.firstPrice
     }
   }
 
   incrementAdditionalMeter() {
     this.quantityAdditionalMeter++;
-    this.totalPrice += this.specificService.pricePerMeter
+    //this.totalPrice += this.specificService.pricePerMeter
   }
 
   decrementAdditionalMeter() {
     if (this.quantityAdditionalMeter > 0) {
       this.quantityAdditionalMeter--;
-      this.totalPrice -= this.specificService.pricePerMeter
+      //this.totalPrice -= this.specificService.pricePerMeter
     }
   }
 

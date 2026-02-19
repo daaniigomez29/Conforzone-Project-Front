@@ -40,12 +40,6 @@
               </div>
             </div>
             <div class="col-md-6 text-center text-md-end">
-              <div class="d-flex justify-content-center justify-content-md-end align-items-baseline gap-2">
-                <span class="text-muted">Precio total:</span>
-                <span class="fs-3 fw-bold">{{ (totalPrice > this.specificService.firstPrice ? totalPrice :
-                  this.specificService.firstPrice) | number:'1.2-2' }}€</span>
-              </div>
-              <small class="text-muted fst-italic">21% IVA incluido</small>
               <div class="d-flex justify-content-md-end justify-content-center pt-3">
                 <button class="btn btn-success" data-bs-toggle="modal" (click)="step = 1"
                   data-bs-target="#wizardModal">Solicitar presupuesto</button>

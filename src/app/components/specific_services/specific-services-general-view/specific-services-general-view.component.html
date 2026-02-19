@@ -13,7 +13,6 @@
                     <div class="w-100 d-flex flex-column justify-content-center align-items-center">
                         <h6 class="py-3 border w-100 d-flex justify-content-center hover-text text-center">
                             {{specificService.name}}</h6>
-                        <p class="fw-bold mt-2">{{specificService.firstPrice | number : '1.2-2'}}€</p>
                     </div>
                     @if (!specificService.available) {
                         <div class="alert2 alert-danger d-flex justify-content-center align-items-center text-center gap-3 m-2 p-1" style="position: absolute; top: 0; left: 0; z-index: 1;">

@@ -39,8 +39,8 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6 text-center text-md-end">
-              <div class="d-flex justify-content-md-end justify-content-center pt-3">
+            <div class="col-md-6 text-center align-items-center text-md-end">
+              <div class="d-flex justify-content-md-center justify-content-center pt-3">
                 <button class="btn btn-success" data-bs-toggle="modal" (click)="step = 1"
                   data-bs-target="#wizardModal">Solicitar presupuesto</button>
               </div>
@@ -49,16 +49,20 @@
         </div>
       }
         <div class="alert alert-info py-2 fw-medium">
-          <i class="fa-solid fa-circle-exclamation"></i> Todos los precios en la página son una <strong>aproximación del
-            precio final</strong>, para confirmación de este consultar precio vía <a
+          <i class="fa-solid fa-circle-exclamation"></i> Todos los precios de las instalaciones pueden ser consultados vía 
+            <a
             class="alert-link link-with-underline"
             [href]="emailContactLink"
             target="_blank">Email</a>
-          o
+          ,
           <a class="alert-link link-with-underline-whatsapp"
             [href]="whatsappContactLink"
-            target="_blank">Whatsapp</a>.
-        </div>
+            target="_blank">Whatsapp</a>
+          o 
+          <a class="alert-link link-with-underline-whatsapp"
+            [href]="tlfContactLink"
+            target="_blank">llamando al 674 86 78 24</a>
+        </div> 
       </div>
 
       <div class="modal fade text-dark" id="wizardModal" tabindex="-1" aria-labelledby="wizardModalLabel"
@@ -167,13 +171,6 @@
               </div>
               <div class="col-md-6 text-center text-md-end">
                 <h4 class="fw-bold mb-1">{{ specificService.pricePerMeter | number:'1.2-2' }}€</h4>
-                <small class="text-muted fst-italic">21% IVA incluido</small>
-              </div>
-              <div class="col-md-6 text-center text-md-end py-3 d-block d-lg-none">
-                <div class="d-flex justify-content-center justify-content-md-end align-items-baseline gap-2">
-                  <span class="text-muted">Precio total:</span>
-                  <span class="fs-3 fw-bold">{{ totalPrice | number:'1.2-2' }}€</span>
-                </div>
                 <small class="text-muted fst-italic">21% IVA incluido</small>
               </div>
             </div>

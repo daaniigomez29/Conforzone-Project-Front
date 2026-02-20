@@ -105,25 +105,25 @@ export class RequestBudgetServicesModalComponent {
 
   increment() {
     this.quantity++;
-    this.totalPrice += this.specificServiceChoosed.firstPrice
+    //this.totalPrice += this.specificServiceChoosed.firstPrice
   }
 
   decrement() {
     if (this.quantity > 1) {
       this.quantity--;
-      this.totalPrice -= this.specificServiceChoosed.firstPrice
+      //this.totalPrice -= this.specificServiceChoosed.firstPrice
     }
   }
 
   goStep3() {
     this.step = 3
-    this.totalPrice = this.specificServiceChoosed.firstPrice
+    //this.totalPrice = this.specificServiceChoosed.firstPrice
   }
 
   goStep5() {
     this.step = 5
     this.quantityAdditionalMeter = 0
-    this.totalPriceWithAdditionalMeter = this.totalPrice
+    //this.totalPriceWithAdditionalMeter = this.totalPrice
   }
 
   selectCityStep() {
@@ -138,13 +138,13 @@ export class RequestBudgetServicesModalComponent {
 
   incrementAdditionalMeter() {
     this.quantityAdditionalMeter++;
-    this.totalPriceWithAdditionalMeter += this.specificServiceChoosed.pricePerMeter
+    //this.totalPriceWithAdditionalMeter += this.specificServiceChoosed.pricePerMeter
   }
 
   decrementAdditionalMeter() {
     if (this.quantityAdditionalMeter > 0) {
       this.quantityAdditionalMeter--;
-      this.totalPriceWithAdditionalMeter -= this.specificServiceChoosed.pricePerMeter
+      //this.totalPriceWithAdditionalMeter -= this.specificServiceChoosed.pricePerMeter
     }
   }
 
@@ -163,7 +163,7 @@ export class RequestBudgetServicesModalComponent {
 
   closeModal(){
     if(this.totalPrice > 0){
-      this.totalPrice = this.specificServiceChoosed.firstPrice
+      //this.totalPrice = this.specificServiceChoosed.firstPrice
     }
   }
 }

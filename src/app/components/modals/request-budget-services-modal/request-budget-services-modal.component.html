@@ -50,29 +50,17 @@
     {{ specificServiceChoosed.name }}
   </p>
 
-  <div class="row align-items-center mb-3">
+  <div class="row align-items-center justify-center mb-3">
     <!-- Cantidad -->
-    <div class="col-md-6 mb-3 mb-md-0 position-relative">
+    <div class="col-md-12 mb-3 position-relative">
       <div
-        class="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start align-items-center gap-2">
+        class="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-2">
         <h5 class="fw-bold mb-0">Cantidad:</h5>
         <div class="d-flex gap-3 align-items-center">
           <button class="btn btn-outline-primary px-3" (click)="decrement()"><i class="fa-solid fa-minus"></i></button>
           <span class="fs-5">{{quantity}}</span>
           <button class="btn btn-outline-primary px-3" (click)="increment()"><i class="fa-solid fa-plus"></i></button>
         </div>
-      </div>
-    </div>
-
-    <!-- Precio total -->
-    <div class="col-md-6 text-center text-md-end">
-      <div class="d-flex flex-column align-items-center align-items-md-end">
-        <span class="text-muted">Precio total:</span>
-        <span class="fs-4 fw-bold text-dark">
-          {{ (totalPrice > this.specificServiceChoosed.firstPrice ? totalPrice :
-          this.specificServiceChoosed.firstPrice) | number:'1.2-2' }}€
-        </span>
-        <small class="text-muted fst-italic">21% IVA incluido</small>
       </div>
     </div>
   </div>
@@ -100,7 +88,7 @@
 
   <div class="row align-items-center mb-3">
     <!-- Cantidad -->
-    <div class="col-md-6 mb-3 mb-md-0 position-relative">
+    <div class="col-md-12 mb-3 mb-md-0 position-relative">
       <div
         class="d-flex flex-column flex-sm-row justify-content-center justify-content-md-start align-items-center gap-2">
         <h5 class="fw-bold mb-0">Cantidad de metros adicionales:</h5>
@@ -111,18 +99,6 @@
           <button class="btn btn-outline-primary px-3" (click)="incrementAdditionalMeter()"><i
               class="fa-solid fa-plus"></i></button>
         </div>
-      </div>
-    </div>
-
-    <!-- Precio total -->
-    <div class="col-md-6 text-center text-md-end">
-      <div class="d-flex flex-column align-items-center align-items-md-end">
-        <span class="text-muted">Precio total:</span>
-        <span class="fs-4 fw-bold text-dark">
-          {{ (totalPriceWithAdditionalMeter > this.specificServiceChoosed.firstPrice ? totalPriceWithAdditionalMeter :
-          this.specificServiceChoosed.firstPrice) | number:'1.2-2' }}€
-        </span>
-        <small class="text-muted fst-italic">21% IVA incluido</small>
       </div>
     </div>
   </div>
@@ -173,8 +149,6 @@
       @if (quantityAdditionalMeter > 0) {
       <p><strong>Metros adicionales: </strong> {{quantityAdditionalMeter}}</p>
       }
-      <p><strong style="font-size: 17px;">Precio total:</strong> {{totalPriceWithAdditionalMeter | number: '1.2-2'}}€
-      </p>
       <p><strong>Lugar de la instalación: </strong> {{installationPlace}}</p>
     </div>
     <label>¿Cómo te gustaría solicitar el presupuesto?</label>

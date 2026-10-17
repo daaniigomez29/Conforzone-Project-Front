@@ -25,7 +25,7 @@ export class SpecificServiceDetailComponent implements OnInit, OnDestroy {
 
   whatsappContactLink: string = ''
 
-  tlfContactLink: string = 'tel:+34674867824'
+  tlfContactLink: string = 'tel:+34672903710'
 
   isOfferPage: boolean = false
 

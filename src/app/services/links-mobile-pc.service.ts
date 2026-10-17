@@ -14,10 +14,10 @@ export class LinksMobilePcService {
 
 
   getWhatsappContactLink() {
-     let link = `https://web.whatsapp.com/send?l=es&phone=34674867824&text=`;
+     let link = `https://web.whatsapp.com/send?l=es&phone=34672903710&text=`;
 
      if(this.isInMobile()){
-      link = `https://wa.me/34674867824?text=`
+      link = `https://wa.me/34672903710?text=`
      }
 
      return link;
@@ -34,10 +34,10 @@ export class LinksMobilePcService {
   }
 
   getWhatsappRequestBudgetLink(){
-    let link = `https://web.whatsapp.com/send?l=es&phone=34674867824&text=`;
+    let link = `https://web.whatsapp.com/send?l=es&phone=34672903710&text=`;
 
     if(this.isInMobile()) {
-      link = `https://wa.me/34674867824?text=`;
+      link = `https://wa.me/34672903710?text=`;
     }
 
     return link;
